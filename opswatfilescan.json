@@ -10,6 +10,14 @@
     "python_version": "3",
     "product_version_regex": ".*",
     "publisher": "OPSWAT",
+    "contributors": [
+        {
+            "name": "Aniko Bartos"
+        },
+        {
+            "name": "Peter Vingelmann"
+        }
+    ],
     "license": "Copyright (c) OPSWAT, 2023",
     "app_version": "1.0.0",
     "utctime_updated": "2023-05-12T18:00:17.655821Z",
