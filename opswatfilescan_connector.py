@@ -7,18 +7,19 @@
 # Python 3 Compatibility imports
 from __future__ import print_function, unicode_literals
 
+import json
+import time
+
 # Phantom App imports
 import phantom.app as phantom
 import phantom.rules as ph_rules
-from phantom.base_connector import BaseConnector
+import requests
+from bs4 import BeautifulSoup
 from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
 
 # Usage of the consts file is recommended
 from opswatfilescan_consts import *
-import requests
-import json
-from bs4 import BeautifulSoup
-import time
 
 
 class RetVal(tuple):
