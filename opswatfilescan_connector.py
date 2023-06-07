@@ -164,7 +164,7 @@ class OpswatFilescanConnector(BaseConnector):
 
     def _poll_result(self, action_result, flow_id):
         elapsed_time = 0
-
+        summary_data = action_result.update_summary({})
         filters = [
             "filter=general",
             "filter=finalVerdict",
@@ -223,7 +223,7 @@ class OpswatFilescanConnector(BaseConnector):
                             x.get("rejected_reason") for x in rejected
                         ]
 
-                    action_result.update_summary(summary)
+                    summary_data.update(summary)
                     return action_result.set_status(phantom.APP_SUCCESS)
                 if elapsed_time + self._poll_interval > self._timeout:
                     time.sleep(self._timeout - elapsed_time)
@@ -271,8 +271,6 @@ class OpswatFilescanConnector(BaseConnector):
                 "In action handler for: {0}".format(self.get_action_identifier())
             )
             action_result = self.add_action_result(ActionResult(dict(param)))
-            summary_data = action_result.update_summary({})
-
             data = {"url": param["url"]}
 
             if param.get("password", None):
@@ -317,7 +315,6 @@ class OpswatFilescanConnector(BaseConnector):
                 "In action handler for: {0}".format(self.get_action_identifier())
             )
             action_result = self.add_action_result(ActionResult(dict(param)))
-            summary_data = action_result.update_summary({})
 
             vault_id = param.get("vault_id")
             if not vault_id:
@@ -368,7 +365,7 @@ class OpswatFilescanConnector(BaseConnector):
 
             flow_id = response_data.get("flow_id", None)
             if not flow_id:
-                self.save_progress(f"ERROR: The flow_id to be polled is missing")
+                self.save_progress("ERROR: The flow_id to be polled is missing")
                 return action_result.set_status(
                     phantom.APP_ERROR, "ERROR: The flow_id to be polled is missing"
                 )
@@ -401,7 +398,7 @@ class OpswatFilescanConnector(BaseConnector):
                 or (page and int(page) <= 0)
                 or (limit and (int(limit) <= 0 or int(limit) > 50))
             ):
-                self.save_progress(f"ERROR: Invalid parameter")
+                self.save_progress("ERROR: Invalid parameter")
                 return action_result.set_status(
                     phantom.APP_ERROR, "ERROR: Invalid parameter"
                 )
@@ -471,10 +468,10 @@ class OpswatFilescanConnector(BaseConnector):
                     action_result.add_data(item)
                     verdict = item.get("verdict", "unknown").lower()
                     summary[f"total_{verdict}"] += 1
-                action_result.update_summary(summary)
+                summary_data.update(summary)
                 self.save_progress(f"{len(items)} results were found!")
             else:
-                self.save_progress(f"No results were found!")
+                self.save_progress("No results were found!")
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
             self.save_progress(f"Search query failure: {e!r}")
@@ -523,7 +520,7 @@ class OpswatFilescanConnector(BaseConnector):
                     :10
                 ]
             action_result.add_data(response_data)
-            action_result.update_summary(
+            summary_data.update(
                 {
                     "verdict": response_data.get("overall_verdict", "unknown"),
                 }
