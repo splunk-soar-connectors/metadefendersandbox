@@ -149,7 +149,7 @@
                     "data_path": "action_result.data.*.allTags.*.sourceIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "3vxaipbkxuaxyzjnab7jrm8p6lntu4e9tmqf4b7hsdmpw2qvgxmarmmobb121rs7"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -251,14 +251,14 @@
                     "data_path": "action_result.data.*.taskReference.additionalInfo.digests.SHA-256",
                     "data_type": "string",
                     "example_values": [
-                        "834d1dbfab8330ea5f1844f6e905ed0ac19d1033ee9a9f1122ad2051c56783dc"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.taskReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -286,7 +286,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -315,14 +315,14 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.additionalInfo",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -350,7 +350,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -434,7 +434,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.sourceIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "3vxaipbkxuaxyzjnab7jrm8p6lntu4e9tmqf4b7hsdmpw2qvgxmarmmobb121rs7"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -551,7 +551,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.originIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "322znmqaajb1zb0x030pk8e5hv4556i0x3z3tfsrbujtq1qdmygvs6umyjyvve6x"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -615,14 +615,14 @@
                     "data_path": "action_result.data.*.subtaskReferences.*.additionalInfo",
                     "data_type": "string",
                     "example_values": [
-                        "01234567-89ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.subtaskReferences.*.ID",
                     "data_type": "string",
                     "example_values": [
-                        "01234567-89ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -650,7 +650,7 @@
                     "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "01234567-89ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -973,7 +973,7 @@
                     "data_path": "action_result.data.*.allTags.*.sourceIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "3vxaipbkxuaxyzjnab7jrm8p6lntu4e9tmqf4b7hsdmpw2qvgxmarmmobb121rs7"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -1075,14 +1075,14 @@
                     "data_path": "action_result.data.*.taskReference.additionalInfo.digests.SHA-256",
                     "data_type": "string",
                     "example_values": [
-                        "834d1dbfab8330ea5f1844f6e905ed0ac19d1033ee9a9f1122ad2051c56783dc"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.taskReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -1110,7 +1110,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -1139,14 +1139,14 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.additionalInfo",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -1174,7 +1174,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -1258,7 +1258,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.sourceIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "3vxaipbkxuaxyzjnab7jrm8p6lntu4e9tmqf4b7hsdmpw2qvgxmarmmobb121rs7"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -1375,7 +1375,7 @@
                     "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.originIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "322znmqaajb1zb0x030pk8e5hv4556i0x3z3tfsrbujtq1qdmygvs6umyjyvve6x"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -1439,14 +1439,14 @@
                     "data_path": "action_result.data.*.subtaskReferences.*.additionalInfo",
                     "data_type": "string",
                     "example_values": [
-                        "01234567-89ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.subtaskReferences.*.ID",
                     "data_type": "string",
                     "example_values": [
-                        "01234567-89ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -1474,7 +1474,7 @@
                     "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "01234567-89ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -1751,7 +1751,7 @@
                     "data_path": "action_result.data.*.id",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -1830,7 +1830,7 @@
                     "data_path": "action_result.data.*.tags.*.sourceIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "3vxaipbkxuaxyzjnab7jrm8p6lntu4e9tmqf4b7hsdmpw2qvgxmarmmobb121rs7"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -2113,7 +2113,7 @@
                     "data_path": "action_result.data.*.filescan_reports.*.report_id",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
@@ -2241,7 +2241,7 @@
                     "data_path": "action_result.data.*.filescan_reports.*.report_id",
                     "data_type": "string",
                     "example_values": [
-                        "12345678-90ab-cdef-ghij-klmnopqrstuv"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
