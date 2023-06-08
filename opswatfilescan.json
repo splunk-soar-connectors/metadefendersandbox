@@ -1,7 +1,7 @@
 {
     "appid": "6ad1c442-3bce-4df7-a0e2-4b4e1f3406fe",
     "name": "OPSWAT Filescan",
-    "description": "OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction.",
+    "description": "OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction",
     "type": "sandbox",
     "product_vendor": "OPSWAT",
     "logo": "opswatfilescan_dark.svg",
@@ -76,6 +76,7 @@
             "action": "detonate url",
             "identifier": "detonate_url",
             "description": "Retrieve detonation analysis results for URL",
+            "verbose": "detonate url will send an URL to OPSWAT Filescan for analysis.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -879,6 +880,13 @@
                     "example_values": [
                         2
                     ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
+                    ]
                 }
             ],
             "versions": "EQ(*)"
@@ -887,6 +895,7 @@
             "action": "detonate file",
             "identifier": "detonate_file",
             "description": "Retrieve detonation analysis results for file",
+            "verbose": "detonate url will send a file from Vault to OPSWAT Filescan for analysis.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -899,8 +908,6 @@
                         "vault id",
                         "sha1"
                     ],
-                    "value_list": [],
-                    "default": "",
                     "order": 0,
                     "name": "vault_id"
                 },
@@ -1703,6 +1710,13 @@
                     "example_values": [
                         2
                     ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
+                    ]
                 }
             ],
             "versions": "EQ(*)"
@@ -1722,7 +1736,7 @@
                     "order": 0
                 },
                 "limit": {
-                    "description": "Number of total results. Maximum 50. (If page and page_size was also provided, then it will be ignored.)",
+                    "description": "Number of total results, maximum 50 (if page and page_size was also provided, then it will be ignored)",
                     "data_type": "numeric",
                     "default": 10,
                     "required": false,
@@ -2012,6 +2026,13 @@
                     "example_values": [
                         2
                     ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Total benign: 0, Total unknown: 0, Total informational: 0, Total suspicious: 2, Total likely malicious: 0, Total malicious: 0, Available report count: 5"
+                    ]
                 }
             ],
             "versions": "EQ(*)"
@@ -2024,7 +2045,7 @@
             "read_only": true,
             "parameters": {
                 "sha256": {
-                    "description": "sha256 value of the file",
+                    "description": "SHA256 value of the file",
                     "data_type": "string",
                     "required": true,
                     "order": 0
@@ -2143,6 +2164,13 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Verdict: malicious"
                     ]
                 }
             ],
@@ -2271,6 +2299,13 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Verdict: malicious"
                     ]
                 }
             ],

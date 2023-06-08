@@ -275,11 +275,11 @@ class OpswatFilescanConnector(BaseConnector):
             data = {"url": param["url"]}
 
             if param.get("password", None):
-                data["password"] = param["password"]
+                data["password"] = param.get("password", "")
             if param.get("is_private", None):
-                data["is_private"] = param["is_private"]
+                data["is_private"] = param.get("is_private", "true")
             if param.get("description", None):
-                data["description"] = param["description"]
+                data["description"] = param.get("description", "")
 
             response_status, response_data = self._make_rest_call(
                 OPSWAT_FILESCAN_ENDPOINT_SCAN_URL,
@@ -343,11 +343,11 @@ class OpswatFilescanConnector(BaseConnector):
 
             data = {}
             if param.get("password", None):
-                data["password"] = param["password"]
+                data["password"] = param.get("password", "")
             if param.get("is_private", None):
-                data["is_private"] = param["is_private"]
+                data["is_private"] = param.get("is_private", "true")
             if param.get("description", None):
-                data["description"] = param["description"]
+                data["description"] = param.get("description", "")
 
             response_status, response_data = self._make_rest_call(
                 OPSWAT_FILESCAN_ENDPOINT_SCAN_FILE,
@@ -395,9 +395,9 @@ class OpswatFilescanConnector(BaseConnector):
             limit = param.get("limit") or 10
             total_available_items = 0
             if (
-                (page_size and int(page_size) not in [5, 10, 20])
-                or (page and int(page) <= 0)
-                or (limit and (int(limit) <= 0 or int(limit) > 50))
+                (page_size and int(page_size) not in [5, 10, 20]) or 
+                (page and int(page) <= 0) or 
+                (limit and (int(limit) <= 0 or int(limit) > 50))
             ):
                 self.save_progress("ERROR: Invalid parameter")
                 return action_result.set_status(
@@ -499,6 +499,8 @@ class OpswatFilescanConnector(BaseConnector):
                 reputation_type = param.get("type", "url")
                 endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/{reputation_type}"
                 params = {"ioc_value": param.get("value")}
+            
+            self.debug_print(f"Endpoint call: {endpoint}")
 
             response_status, response_data = self._make_rest_call(
                 endpoint,
@@ -579,16 +581,16 @@ class OpswatFilescanConnector(BaseConnector):
         self._timeout = int(config.get("timeout"))
 
         if (
-            self._timeout < OPSWAT_FILESCAN_TIMEOUT_MIN
-            or self._timeout > OPSWAT_FILESCAN_TIMEOUT_MAX
+            self._timeout < OPSWAT_FILESCAN_TIMEOUT_MIN or 
+            self._timeout > OPSWAT_FILESCAN_TIMEOUT_MAX
         ):
             self.save_progress(
                 f"ERROR: Detonate timeout must be an integer between {OPSWAT_FILESCAN_TIMEOUT_MIN} and {OPSWAT_FILESCAN_TIMEOUT_MAX}!"
             )
             return phantom.APP_ERROR
         if (
-            self._poll_interval < OPSWAT_FILESCAN_POLL_INTERVAL_MIN
-            or self._poll_interval > OPSWAT_FILESCAN_POLL_INTERVAL_MAX
+            self._poll_interval < OPSWAT_FILESCAN_POLL_INTERVAL_MIN or 
+            self._poll_interval > OPSWAT_FILESCAN_POLL_INTERVAL_MAX
         ):
             self.save_progress(
                 f"ERROR: Poll interval must be an integer between {OPSWAT_FILESCAN_POLL_INTERVAL_MIN} and {OPSWAT_FILESCAN_POLL_INTERVAL_MAX}!"
