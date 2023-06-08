@@ -149,6 +149,7 @@ class OpswatFilescanConnector(BaseConnector):
                 url,
                 # auth=(username, password),  # basic authentication
                 verify=config.get("verify_server_cert", False),
+                timeout=self._timeout,
                 **kwargs,
             )
 
@@ -379,7 +380,7 @@ class OpswatFilescanConnector(BaseConnector):
                 phantom.APP_ERROR, "ERROR: File detonation failure: {e!r}"
             )
 
-    def _handle_search_report(self, param):
+    def _handle_search_terms(self, param):
         """This function is used to search between OPSWAT Filescan reports"""
         try:
             self.save_progress(
@@ -475,15 +476,14 @@ class OpswatFilescanConnector(BaseConnector):
                 self.save_progress("No results were found!")
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
-            self.save_progress(f"Search report query failure: {e!r}")
+            self.save_progress(f"Search terms query failure: {e!r}")
             return action_result.set_status(
-                phantom.APP_ERROR, "ERROR: Search report query failure: {e!r}"
+                phantom.APP_ERROR, "ERROR: Search terms query failure: {e!r}"
             )
 
     def _handle_reputation(self, param, endpoint, request_params):
         """This function is used to get fast reputation about sha256, ip, domain or url"""
         try:
-
             action_result = self.add_action_result(ActionResult(dict(param)))
             summary_data = action_result.update_summary({})
 
@@ -515,9 +515,9 @@ class OpswatFilescanConnector(BaseConnector):
             )
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
-            self.save_progress(f"Search report query failure: {e!r}")
+            self.save_progress(f"Search terms query failure: {e!r}")
             return action_result.set_status(
-                phantom.APP_ERROR, "ERROR: Search report query failure: {e!r}"
+                phantom.APP_ERROR, "ERROR: Search terms query failure: {e!r}"
             )
 
     def _handle_file_reputation(self, param):
@@ -535,20 +535,49 @@ class OpswatFilescanConnector(BaseConnector):
                 phantom.APP_ERROR, "ERROR: File reputation error: {e!r}"
             )
 
-    def _handle_ip_domain_url_reputation(self, param):
+    def _handle_ip_reputation(self, param):
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
             )
-            reputation_type = param.get("type", "url")
-            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/{reputation_type}"
-            request_params = {"ioc_value": param.get("value")}
+            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/ip"
+            request_params = {"ioc_value": param.get("ip")}
             self.debug_print(f"Endpoint call: {endpoint}")
             return self._handle_reputation(param, endpoint, request_params)
         except Exception as e:
-            self.save_progress(f"File reputation error: {e!r}")
+            self.save_progress(f"IP reputation error: {e!r}")
             return action_result.set_status(
-                phantom.APP_ERROR, "ERROR: File reputation error: {e!r}"
+                phantom.APP_ERROR, "ERROR: IP reputation error: {e!r}"
+            )
+
+    def _handle_domain_reputation(self, param):
+        try:
+            self.save_progress(
+                "In action handler for: {0}".format(self.get_action_identifier())
+            )
+            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/domain"
+            request_params = {"ioc_value": param.get("domain")}
+            self.debug_print(f"Endpoint call: {endpoint}")
+            return self._handle_reputation(param, endpoint, request_params)
+        except Exception as e:
+            self.save_progress(f"Domain reputation error: {e!r}")
+            return action_result.set_status(
+                phantom.APP_ERROR, "ERROR: Domain reputation error: {e!r}"
+            )
+
+    def _handle_url_reputation(self, param):
+        try:
+            self.save_progress(
+                "In action handler for: {0}".format(self.get_action_identifier())
+            )
+            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/url"
+            request_params = {"ioc_value": param.get("url")}
+            self.debug_print(f"Endpoint call: {endpoint}")
+            return self._handle_reputation(param, endpoint, request_params)
+        except Exception as e:
+            self.save_progress(f"URL reputation error: {e!r}")
+            return action_result.set_status(
+                phantom.APP_ERROR, "ERROR: URL reputation error: {e!r}"
             )
 
     def handle_action(self, param):
@@ -556,9 +585,11 @@ class OpswatFilescanConnector(BaseConnector):
             "test_connectivity": self._handle_test_connectivity,
             "detonate_url": self._handle_detonate_url,
             "detonate_file": self._handle_detonate_file,
-            "search_report": self._handle_search_report,
+            "search_terms": self._handle_search_terms,
             "file_reputation": self._handle_file_reputation,
-            "ip_domain_url_reputation": self._handle_ip_domain_url_reputation,
+            "ip_reputation": self._handle_ip_reputation,
+            "domain_reputation": self._handle_domain_reputation,
+            "url_reputation": self._handle_url_reputation,
         }
 
         # Get the action that we are supposed to execute for this App Run
