@@ -2,7 +2,7 @@
 * Initial release with the following actions
     * detonate file
     * detonate url
-    * search
+    * search report
     * file reputation
-    * ioc reputation
+    * ip/domain/url reputation
     * test connectivity

@@ -1725,8 +1725,8 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "search",
-            "identifier": "search",
+            "action": "search report",
+            "identifier": "search_report",
             "description": "Search for scan reports on Filescan using parameters specified in the 'query' field",
             "type": "investigate",
             "read_only": true,
@@ -2188,14 +2188,14 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "ioc reputation",
-            "identifier": "ioc_reputation",
-            "description": "Get the reputation for one given IOC (returns with the last 10 Filescan reports)",
+            "action": "ip/domain/url reputation",
+            "identifier": "ip_domain_url_reputation",
+            "description": "Get the reputation for one given IP, Domain, or URL (returns with the last 10 Filescan reports)",
             "type": "investigate",
             "read_only": true,
             "parameters": {
                 "type": {
-                    "description": "Type of the ioc: ip, domain or url",
+                    "description": "Type of the ioc: IP, Domain or URL",
                     "data_type": "string",
                     "required": true,
                     "value_list": [

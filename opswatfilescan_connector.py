@@ -379,7 +379,7 @@ class OpswatFilescanConnector(BaseConnector):
                 phantom.APP_ERROR, "ERROR: File detonation failure: {e!r}"
             )
 
-    def _handle_search(self, param):
+    def _handle_search_report(self, param):
         """This function is used to search between OPSWAT Filescan reports"""
         try:
             self.save_progress(
@@ -475,9 +475,9 @@ class OpswatFilescanConnector(BaseConnector):
                 self.save_progress("No results were found!")
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
-            self.save_progress(f"Search query failure: {e!r}")
+            self.save_progress(f"Search report query failure: {e!r}")
             return action_result.set_status(
-                phantom.APP_ERROR, "ERROR: Search query failure: {e!r}"
+                phantom.APP_ERROR, "ERROR: Search report query failure: {e!r}"
             )
 
     def _handle_reputation(self, param, endpoint, request_params):
@@ -515,9 +515,9 @@ class OpswatFilescanConnector(BaseConnector):
             )
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
-            self.save_progress(f"Search query failure: {e!r}")
+            self.save_progress(f"Search report query failure: {e!r}")
             return action_result.set_status(
-                phantom.APP_ERROR, "ERROR: Search query failure: {e!r}"
+                phantom.APP_ERROR, "ERROR: Search report query failure: {e!r}"
             )
 
     def _handle_file_reputation(self, param):
@@ -535,7 +535,7 @@ class OpswatFilescanConnector(BaseConnector):
                 phantom.APP_ERROR, "ERROR: File reputation error: {e!r}"
             )
 
-    def _handle_ioc_reputation(self, param):
+    def _handle_ip_domain_url_reputation(self, param):
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
@@ -556,9 +556,9 @@ class OpswatFilescanConnector(BaseConnector):
             "test_connectivity": self._handle_test_connectivity,
             "detonate_url": self._handle_detonate_url,
             "detonate_file": self._handle_detonate_file,
-            "search": self._handle_search,
+            "search_report": self._handle_search_report,
             "file_reputation": self._handle_file_reputation,
-            "ioc_reputation": self._handle_ioc_reputation,
+            "ip_domain_url_reputation": self._handle_ip_domain_url_reputation,
         }
 
         # Get the action that we are supposed to execute for this App Run
