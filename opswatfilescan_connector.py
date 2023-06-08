@@ -395,9 +395,9 @@ class OpswatFilescanConnector(BaseConnector):
             limit = param.get("limit") or 10
             total_available_items = 0
             if (
-                (page_size and int(page_size) not in [5, 10, 20]) or
-                (page and int(page) <= 0) or
-                (limit and (int(limit) <= 0 or int(limit) > 50))
+                (page_size and int(page_size) not in [5, 10, 20])
+                or (page and int(page) <= 0)
+                or (limit and (int(limit) <= 0 or int(limit) > 50))
             ):
                 self.save_progress("ERROR: Invalid parameter")
                 return action_result.set_status(
@@ -480,34 +480,19 @@ class OpswatFilescanConnector(BaseConnector):
                 phantom.APP_ERROR, "ERROR: Search query failure: {e!r}"
             )
 
-    def _handle_reputation(self, param):
+    def _handle_reputation(self, param, endpoint, request_params):
         """This function is used to get fast reputation about sha256, ip, domain or url"""
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+
             action_result = self.add_action_result(ActionResult(dict(param)))
             summary_data = action_result.update_summary({})
-
-            sha256 = param.get("sha256", None)
-            params = {}
-
-            if sha256:
-                endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/hash"
-                params = {"sha256": sha256}
-            else:
-                reputation_type = param.get("type", "url")
-                endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/{reputation_type}"
-                params = {"ioc_value": param.get("value")}
-
-            self.debug_print(f"Endpoint call: {endpoint}")
 
             response_status, response_data = self._make_rest_call(
                 endpoint,
                 action_result,
                 headers=self._headers,
                 method="get",
-                params=params,
+                params=request_params,
             )
             if not response_status:
                 self.save_progress(f"ERROR: {response_data}")
@@ -535,14 +520,45 @@ class OpswatFilescanConnector(BaseConnector):
                 phantom.APP_ERROR, "ERROR: Search query failure: {e!r}"
             )
 
+    def _handle_file_reputation(self, param):
+        try:
+            self.save_progress(
+                "In action handler for: {0}".format(self.get_action_identifier())
+            )
+            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/hash"
+            request_params = {"sha256": param.get("sha256", None)}
+            self.debug_print(f"Endpoint call: {endpoint}")
+            return self._handle_reputation(param, endpoint, request_params)
+        except Exception as e:
+            self.save_progress(f"File reputation error: {e!r}")
+            return action_result.set_status(
+                phantom.APP_ERROR, "ERROR: File reputation error: {e!r}"
+            )
+
+    def _handle_ioc_reputation(self, param):
+        try:
+            self.save_progress(
+                "In action handler for: {0}".format(self.get_action_identifier())
+            )
+            reputation_type = param.get("type", "url")
+            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/{reputation_type}"
+            request_params = {"ioc_value": param.get("value")}
+            self.debug_print(f"Endpoint call: {endpoint}")
+            return self._handle_reputation(param, endpoint, request_params)
+        except Exception as e:
+            self.save_progress(f"File reputation error: {e!r}")
+            return action_result.set_status(
+                phantom.APP_ERROR, "ERROR: File reputation error: {e!r}"
+            )
+
     def handle_action(self, param):
         action_list = {
             "test_connectivity": self._handle_test_connectivity,
             "detonate_url": self._handle_detonate_url,
             "detonate_file": self._handle_detonate_file,
             "search": self._handle_search,
-            "file_reputation": self._handle_reputation,
-            "ioc_reputation": self._handle_reputation,
+            "file_reputation": self._handle_file_reputation,
+            "ioc_reputation": self._handle_ioc_reputation,
         }
 
         # Get the action that we are supposed to execute for this App Run
@@ -581,16 +597,16 @@ class OpswatFilescanConnector(BaseConnector):
         self._timeout = int(config.get("timeout"))
 
         if (
-            self._timeout < OPSWAT_FILESCAN_TIMEOUT_MIN or
-            self._timeout > OPSWAT_FILESCAN_TIMEOUT_MAX
+            self._timeout < OPSWAT_FILESCAN_TIMEOUT_MIN
+            or self._timeout > OPSWAT_FILESCAN_TIMEOUT_MAX
         ):
             self.save_progress(
                 f"ERROR: Detonate timeout must be an integer between {OPSWAT_FILESCAN_TIMEOUT_MIN} and {OPSWAT_FILESCAN_TIMEOUT_MAX}!"
             )
             return phantom.APP_ERROR
         if (
-            self._poll_interval < OPSWAT_FILESCAN_POLL_INTERVAL_MIN or
-            self._poll_interval > OPSWAT_FILESCAN_POLL_INTERVAL_MAX
+            self._poll_interval < OPSWAT_FILESCAN_POLL_INTERVAL_MIN
+            or self._poll_interval > OPSWAT_FILESCAN_POLL_INTERVAL_MAX
         ):
             self.save_progress(
                 f"ERROR: Poll interval must be an integer between {OPSWAT_FILESCAN_POLL_INTERVAL_MIN} and {OPSWAT_FILESCAN_POLL_INTERVAL_MAX}!"

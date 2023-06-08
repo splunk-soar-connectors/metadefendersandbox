@@ -25,6 +25,10 @@
     "main_module": "opswatfilescan_connector.py",
     "min_phantom_version": "6.0.0.114895",
     "app_wizard_version": "1.0.0",
+    "fips_compliant": true,
+    "latest_tested_versions": [
+        "API v1.0 https://www.filescan.io/ June 8, 2023"
+    ],
     "configuration": {
         "server_url": {
             "description": "Server URL (e.g. https://www.filescan.io)",
@@ -65,7 +69,6 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -76,7 +79,7 @@
             "action": "detonate url",
             "identifier": "detonate_url",
             "description": "Retrieve detonation analysis results for URL",
-            "verbose": "detonate url will send an URL to OPSWAT Filescan for analysis.",
+            "verbose": "Detonate url will send an URL to OPSWAT Filescan for analysis.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -895,7 +898,7 @@
             "action": "detonate file",
             "identifier": "detonate_file",
             "description": "Retrieve detonation analysis results for file",
-            "verbose": "detonate url will send a file from Vault to OPSWAT Filescan for analysis.",
+            "verbose": "Detonate url will send a file from Vault to OPSWAT Filescan for analysis.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -2053,6 +2056,14 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.sha256",
                     "data_type": "string",
                     "example_values": [
@@ -2203,6 +2214,14 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.ioc_type",
                     "data_type": "string",
                     "example_values": [
@@ -2316,7 +2335,7 @@
         "wheel": [
             {
                 "module": "beautifulsoup4",
-                "input_file": "wheels/py3/beautifulsoup4-4.12.2-py3-none-any.whl"
+                "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
             },
             {
                 "module": "certifi",
@@ -2324,23 +2343,23 @@
             },
             {
                 "module": "chardet",
-                "input_file": "wheels/shared/chardet-5.1.0-py3-none-any.whl"
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
             },
             {
                 "module": "idna",
-                "input_file": "wheels/shared/idna-3.4-py3-none-any.whl"
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
             },
             {
                 "module": "requests",
-                "input_file": "wheels/shared/requests-2.31.0-py3-none-any.whl"
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
             },
             {
                 "module": "soupsieve",
-                "input_file": "wheels/py3/soupsieve-2.4.1-py3-none-any.whl"
+                "input_file": "wheels/py3/soupsieve-2.3.2.post1-py3-none-any.whl"
             },
             {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-2.0.2-py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-1.26.13-py2.py3-none-any.whl"
             }
         ]
     }
