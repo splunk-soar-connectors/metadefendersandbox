@@ -4,8 +4,8 @@
     "description": "OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction",
     "type": "sandbox",
     "product_vendor": "OPSWAT",
-    "logo": "opswatfilescan_dark.svg",
-    "logo_dark": "opswatfilescan.svg",
+    "logo": "logo_opswatfilescan_dark.svg",
+    "logo_dark": "logo_opswatfilescan.svg",
     "product_name": "Filescan",
     "python_version": "3",
     "product_version_regex": ".*",
@@ -23,7 +23,7 @@
     "utctime_updated": "2023-05-12T18:00:17.655821Z",
     "package_name": "phantom_opswatfilescan",
     "main_module": "opswatfilescan_connector.py",
-    "min_phantom_version": "6.0.0.114895",
+    "min_phantom_version": "6.0.0",
     "app_wizard_version": "1.0.0",
     "fips_compliant": true,
     "latest_tested_versions": [
@@ -40,7 +40,7 @@
             "id": 0
         },
         "api_key": {
-            "description": "The OPSWAT FIlescan API Key to use for connection",
+            "description": "The OPSWAT Filescan API Key to use for connection",
             "data_type": "password",
             "required": true,
             "order": 1,
@@ -48,7 +48,7 @@
             "id": 1
         },
         "poll_interval": {
-            "description": "Number of seconds to poll for a detonation result (Default: 5, Range: [1;30])",
+            "description": "Number of seconds to poll for a detonation result (Default: 5, Range: [1:30])",
             "data_type": "numeric",
             "default": 5,
             "order": 2,
@@ -56,7 +56,7 @@
             "id": 2
         },
         "timeout": {
-            "description": "Request Timeout (Default: 60 seconds, Range: [30;300])",
+            "description": "Request Timeout (Default: 60 seconds, Range: [30:300])",
             "data_type": "numeric",
             "default": 60,
             "order": 3,
@@ -97,23 +97,17 @@
                 "password": {
                     "description": "Custom password, in case uploaded archive is protected",
                     "data_type": "password",
-                    "required": false,
-                    "primary": false,
                     "order": 1
                 },
                 "is_private": {
                     "description": "If file should not be available for download by other users",
                     "data_type": "boolean",
-                    "required": false,
                     "default": false,
-                    "primary": false,
                     "order": 2
                 },
                 "description": {
                     "description": "Uploaded file/url description",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
                     "order": 3
                 }
             },
@@ -127,27 +121,142 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.finalVerdict.verdict",
+                    "data_path": "action_result.parameter.description",
                     "data_type": "string",
                     "example_values": [
-                        "malicious",
-                        "benign"
+                        "This is test desciption"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.finalVerdict.threatLevel",
+                    "data_path": "action_result.parameter.is_private",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.password",
+                    "data_type": "password",
+                    "example_values": [
+                        "EAMPLEdajjccds"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.url",
+                    "data_type": "string",
+                    "contains": [
+                        "url"
+                    ],
+                    "example_values": [
+                        "https://www.test.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.averageSignalStrength",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.description",
+                    "data_type": "string",
+                    "example_values": [
+                        "Found a base64 encoded http(s) URL prefix"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.finalSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.identifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "S001"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.peakSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.isStrictlyBasedOnInputData",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originIdentifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originPath",
+                    "data_type": "string",
+                    "example_values": [
+                        "file.strings.references"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originType",
+                    "data_type": "string",
+                    "example_values": [
+                        "EXTRACTED_FILE"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.signalReadable",
+                    "data_type": "string",
+                    "example_values": [
+                        "Found artifact in string"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.strength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.confidence",
+                    "data_type": "numeric",
+                    "example_values": [
                         1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.finalVerdict.confidence",
+                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.threatLevel",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
-                        1
+                        0.2
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "INFORMATIONAL"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allTags.*.isRootTag",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
                     ]
                 },
                 {
@@ -165,33 +274,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.isRootTag",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allTags.*.tag.name",
+                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.cluster.authors.*",
                     "data_type": "string",
                     "example_values": [
-                        "html",
-                        "png"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allTags.*.tag.synonyms.*",
-                    "data_type": "string",
-                    "example_values": [
-                        "synonym"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "This is a description"
+                        "John Doe"
                     ]
                 },
                 {
@@ -202,26 +288,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.cluster.authors.*",
+                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.description",
                     "data_type": "string",
                     "example_values": [
-                        "John Doe"
+                        "This is a description"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.tag.verdict.verdict",
+                    "data_path": "action_result.data.*.allTags.*.tag.name",
                     "data_type": "string",
                     "example_values": [
-                        "LIKELY_MALICIOUS",
-                        "BENIGN"
+                        "html"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.tag.verdict.threatLevel",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.allTags.*.tag.synonyms.*",
+                    "data_type": "string",
                     "example_values": [
-                        0.75,
-                        0.5
+                        "synonym"
                     ]
                 },
                 {
@@ -232,6 +316,62 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.allTags.*.tag.verdict.threatLevel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.75
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allTags.*.tag.verdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "LIKELY_MALICIOUS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.file.hash",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.file.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "https://www.test.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.file.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "other"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.finalVerdict.confidence",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.finalVerdict.threatLevel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.finalVerdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.overallState",
                     "data_type": "string",
                     "example_values": [
@@ -239,10 +379,87 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.name",
+                    "data_path": "action_result.data.*.postprocessIocs.*",
                     "data_type": "string",
                     "example_values": [
-                        "transform-file"
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.ID",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.additionalInfo",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "osint"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.opcount",
+                    "data_type": "numeric",
+                    "example_values": [
+                        4
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.processTime",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1006
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.ID",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "osint"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "OSINT"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "SUCCESS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.ID",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.additionalInfo.digests.SHA-256",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -260,38 +477,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.additionalInfo.digests.SHA-256",
+                    "data_path": "action_result.data.*.taskReference.name",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.state",
-                    "data_type": "string",
-                    "example_values": [
-                        "SUCCESS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "TRANSFORM_FILE"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "file"
+                        "transform-file"
                     ]
                 },
                 {
@@ -302,137 +491,11 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.opcount",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.isRootTag",
+                    "data_type": "boolean",
                     "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.processTime",
-                    "data_type": "numeric",
-                    "example_values": [
-                        8000,
-                        2130
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "visualization"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.additionalInfo",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.state",
-                    "data_type": "string",
-                    "example_values": [
-                        "SUCCESS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "VISUALIZATION"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "visualization"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.opcount",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.processTime",
-                    "data_type": "numeric",
-                    "example_values": [
-                        235
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.identifier",
-                    "data_type": "string",
-                    "example_values": [
-                        "Y002"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "Matched a malicious YARA rule"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.averageSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.peakSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.finalSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "MALICIOUS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.threatLevel",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.confidence",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
+                        true,
+                        false
                     ]
                 },
                 {
@@ -450,33 +513,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.isRootTag",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.name",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.cluster.authors.*",
                     "data_type": "string",
                     "example_values": [
-                        "html",
-                        "png"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.synonyms.*",
-                    "data_type": "string",
-                    "example_values": [
-                        "synonym"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "This is a description"
+                        "John Doe"
                     ]
                 },
                 {
@@ -487,26 +527,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.cluster.authors.*",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.description",
                     "data_type": "string",
                     "example_values": [
-                        "John Doe"
+                        "This is a description"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.verdict",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.name",
                     "data_type": "string",
                     "example_values": [
-                        "LIKELY_MALICIOUS",
-                        "BENIGN"
+                        "html"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.threatLevel",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.synonyms.*",
+                    "data_type": "string",
                     "example_values": [
-                        0.75,
-                        0.5
+                        "synonym"
                     ]
                 },
                 {
@@ -517,10 +555,59 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.strength",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.threatLevel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.75
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "LIKELY_MALICIOUS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.averageSignalStrength",
                     "data_type": "numeric",
                     "example_values": [
                         1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.description",
+                    "data_type": "string",
+                    "example_values": [
+                        "Matched a malicious YARA rule"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.finalSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.identifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "Y002"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.peakSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.additionalInfo",
+                    "data_type": "string",
+                    "example_values": [
+                        "PUP_InstallRex_AntiFWb"
                     ]
                 },
                 {
@@ -532,17 +619,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.signalReadable",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.originIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "Matched YARA rule PUP_InstallRex_AntiFWb with strength 0.75"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.additionalInfo",
-                    "data_type": "string",
-                    "example_values": [
-                        "PUP_InstallRex_AntiFWb"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -560,39 +640,38 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.originIdentifier",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.signalReadable",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                        "Matched YARA rule PUP_InstallRex_AntiFWb with strength 0.75"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.file.name",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.strength",
+                    "data_type": "numeric",
                     "example_values": [
-                        "bad_file.exe"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.file.hash",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.confidence",
+                    "data_type": "numeric",
                     "example_values": [
-                        "1234567890abcdefghijklmnopqrstuvwxyz123456789öabcdefghijklmnopqr"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.file.type",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.threatLevel",
+                    "data_type": "numeric",
                     "example_values": [
-                        "pe"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.filesDownloadFinished",
-                    "data_type": "boolean",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.verdict",
+                    "data_type": "string",
                     "example_values": [
-                        true,
-                        false
+                        "MALICIOUS"
                     ]
                 },
                 {
@@ -617,133 +696,28 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.name",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.file.hash",
                     "data_type": "string",
                     "example_values": [
-                        "osint"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.additionalInfo",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.file.name",
                     "data_type": "string",
                     "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                        "bad_file.exe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.ID",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.file.type",
                     "data_type": "string",
                     "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                        "pe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.state",
-                    "data_type": "string",
-                    "example_values": [
-                        "SUCCESS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "OSINT"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "osint"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.opcount",
-                    "data_type": "numeric",
-                    "example_values": [
-                        4
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.processTime",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1006
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.identifier",
-                    "data_type": "string",
-                    "example_values": [
-                        "S001"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "Found a base64 encoded http(s) URL prefix"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.averageSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.peakSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.finalSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "INFORMATIONAL"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.threatLevel",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.2
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.confidence",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.strength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.isStrictlyBasedOnInputData",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.filesDownloadFinished",
                     "data_type": "boolean",
                     "example_values": [
                         true,
@@ -751,60 +725,101 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.signalReadable",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.name",
                     "data_type": "string",
                     "example_values": [
-                        "Found artifact in string"
+                        "file"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originPath",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.opcount",
+                    "data_type": "numeric",
                     "example_values": [
-                        "file.strings.references"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originType",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.processTime",
+                    "data_type": "numeric",
                     "example_values": [
-                        "EXTRACTED_FILE"
+                        8000
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originIdentifier",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.ID",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.postprocessIocs.*",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.additionalInfo",
                     "data_type": "string",
                     "example_values": [
-                        "url"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.file.name",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.name",
                     "data_type": "string",
                     "example_values": [
-                        "https://www.google.com"
+                        "visualization"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.file.hash",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.opcount",
+                    "data_type": "numeric",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.file.type",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.processTime",
+                    "data_type": "numeric",
+                    "example_values": [
+                        235
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.ID",
                     "data_type": "string",
                     "example_values": [
-                        "other",
-                        "pe"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "visualization"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "VISUALIZATION"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "SUCCESS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "TRANSFORM_FILE"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "SUCCESS"
                     ]
                 },
                 {
@@ -815,6 +830,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.summary.rejected_reasons.*",
+                    "data_type": "string",
+                    "example_values": [
+                        "ARCHIVE_ENCRYPTED"
+                    ]
+                },
+                {
                     "data_path": "action_result.summary.total_benign",
                     "data_type": "numeric",
                     "example_values": [
@@ -822,21 +844,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.total_unknown",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3
-                    ]
-                },
-                {
                     "data_path": "action_result.summary.total_informational",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3
-                    ]
-                },
-                {
-                    "data_path": "action_result.summary.total_suspicious",
                     "data_type": "numeric",
                     "example_values": [
                         3
@@ -864,10 +872,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.rejected_reasons.*",
+                    "data_path": "action_result.summary.total_suspicious",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.total_unknown",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "ARCHIVE_ENCRYPTED"
+                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
                     ]
                 },
                 {
@@ -882,13 +904,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
                     ]
                 }
             ],
@@ -939,16 +954,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.vault_id",
-                    "data_type": "string",
-                    "contains": [
-                        "vault id",
-                        "sha1"
-                    ],
-                    "column_name": "vault_id",
-                    "column_order": 0
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
@@ -957,27 +962,145 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.finalVerdict.verdict",
+                    "data_path": "action_result.parameter.description",
                     "data_type": "string",
                     "example_values": [
-                        "malicious",
-                        "benign"
+                        "This is a description"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.finalVerdict.threatLevel",
+                    "data_path": "action_result.parameter.is_private",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.password",
+                    "data_type": "password",
+                    "example_values": [
+                        "EAMPLEdajjccds"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.vault_id",
+                    "data_type": "string",
+                    "contains": [
+                        "vault id",
+                        "sha1"
+                    ],
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123"
+                    ],
+                    "column_name": "vault_id",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.averageSignalStrength",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.description",
+                    "data_type": "string",
+                    "example_values": [
+                        "Found a base64 encoded http(s) URL prefix"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.finalSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.identifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "S001"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.peakSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.isStrictlyBasedOnInputData",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originIdentifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originPath",
+                    "data_type": "string",
+                    "example_values": [
+                        "file.strings.references"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originType",
+                    "data_type": "string",
+                    "example_values": [
+                        "EXTRACTED_FILE"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.signalReadable",
+                    "data_type": "string",
+                    "example_values": [
+                        "Found artifact in string"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.strength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.25
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.confidence",
+                    "data_type": "numeric",
+                    "example_values": [
                         1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.finalVerdict.confidence",
+                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.threatLevel",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
-                        1
+                        0.2
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "INFORMATIONAL"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allTags.*.isRootTag",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
                     ]
                 },
                 {
@@ -995,33 +1118,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.isRootTag",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allTags.*.tag.name",
+                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.cluster.authors.*",
                     "data_type": "string",
                     "example_values": [
-                        "html",
-                        "png"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allTags.*.tag.synonyms.*",
-                    "data_type": "string",
-                    "example_values": [
-                        "synonym"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "This is a description"
+                        "John Doe"
                     ]
                 },
                 {
@@ -1032,26 +1132,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.cluster.authors.*",
+                    "data_path": "action_result.data.*.allTags.*.tag.descriptions.description",
                     "data_type": "string",
                     "example_values": [
-                        "John Doe"
+                        "This is a description"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.tag.verdict.verdict",
+                    "data_path": "action_result.data.*.allTags.*.tag.name",
                     "data_type": "string",
                     "example_values": [
-                        "LIKELY_MALICIOUS",
-                        "BENIGN"
+                        "html"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allTags.*.tag.verdict.threatLevel",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.allTags.*.tag.synonyms.*",
+                    "data_type": "string",
                     "example_values": [
-                        0.75,
-                        0.5
+                        "synonym"
                     ]
                 },
                 {
@@ -1062,6 +1160,62 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.allTags.*.tag.verdict.threatLevel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.75
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.allTags.*.tag.verdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "LIKELY_MALICIOUS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.file.hash",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.file.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "https://www.test.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.file.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "other"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.finalVerdict.confidence",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.finalVerdict.threatLevel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.finalVerdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.overallState",
                     "data_type": "string",
                     "example_values": [
@@ -1069,10 +1223,87 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.name",
+                    "data_path": "action_result.data.*.postprocessIocs.*",
                     "data_type": "string",
                     "example_values": [
-                        "transform-file"
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.ID",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.additionalInfo",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "osint"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.opcount",
+                    "data_type": "numeric",
+                    "example_values": [
+                        4
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.processTime",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1006
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.ID",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "osint"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "OSINT"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.subtaskReferences.*.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "SUCCESS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.ID",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.additionalInfo.digests.SHA-256",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -1090,38 +1321,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.additionalInfo.digests.SHA-256",
+                    "data_path": "action_result.data.*.taskReference.name",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.state",
-                    "data_type": "string",
-                    "example_values": [
-                        "SUCCESS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "TRANSFORM_FILE"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "file"
+                        "transform-file"
                     ]
                 },
                 {
@@ -1132,137 +1335,11 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.opcount",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.isRootTag",
+                    "data_type": "boolean",
                     "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.processTime",
-                    "data_type": "numeric",
-                    "example_values": [
-                        8000,
-                        2130
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "visualization"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.additionalInfo",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.state",
-                    "data_type": "string",
-                    "example_values": [
-                        "SUCCESS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "VISUALIZATION"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "visualization"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.opcount",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.processTime",
-                    "data_type": "numeric",
-                    "example_values": [
-                        235
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.identifier",
-                    "data_type": "string",
-                    "example_values": [
-                        "Y002"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "Matched a malicious YARA rule"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.averageSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.peakSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.finalSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "MALICIOUS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.threatLevel",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.confidence",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
+                        true,
+                        false
                     ]
                 },
                 {
@@ -1280,33 +1357,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.isRootTag",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.name",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.cluster.authors.*",
                     "data_type": "string",
                     "example_values": [
-                        "html",
-                        "png"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.synonyms.*",
-                    "data_type": "string",
-                    "example_values": [
-                        "synonym"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "This is a description"
+                        "John Doe"
                     ]
                 },
                 {
@@ -1317,26 +1371,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.cluster.authors.*",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.descriptions.description",
                     "data_type": "string",
                     "example_values": [
-                        "John Doe"
+                        "This is a description"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.verdict",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.name",
                     "data_type": "string",
                     "example_values": [
-                        "LIKELY_MALICIOUS",
-                        "BENIGN"
+                        "html"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.threatLevel",
-                    "data_type": "numeric",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.synonyms.*",
+                    "data_type": "string",
                     "example_values": [
-                        0.75,
-                        0.5
+                        "synonym"
                     ]
                 },
                 {
@@ -1347,10 +1399,59 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.strength",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.threatLevel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.75
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.allTags.*.tag.verdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "LIKELY_MALICIOUS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.averageSignalStrength",
                     "data_type": "numeric",
                     "example_values": [
                         1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.description",
+                    "data_type": "string",
+                    "example_values": [
+                        "Matched a malicious YARA rule"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.finalSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.identifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "Y002"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.peakSignalStrength",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.additionalInfo",
+                    "data_type": "string",
+                    "example_values": [
+                        "PUP_InstallRex_AntiFWb"
                     ]
                 },
                 {
@@ -1362,17 +1463,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.signalReadable",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.originIdentifier",
                     "data_type": "string",
                     "example_values": [
-                        "Matched YARA rule PUP_InstallRex_AntiFWb with strength 0.75"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.additionalInfo",
-                    "data_type": "string",
-                    "example_values": [
-                        "PUP_InstallRex_AntiFWb"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
@@ -1390,39 +1484,38 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.originIdentifier",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.signalReadable",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                        "Matched YARA rule PUP_InstallRex_AntiFWb with strength 0.75"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.file.name",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.signals.*.strength",
+                    "data_type": "numeric",
                     "example_values": [
-                        "bad_file.exe"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.file.hash",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.confidence",
+                    "data_type": "numeric",
                     "example_values": [
-                        "1234567890abcdefghijklmnopqrstuvwxyz123456789öabcdefghijklmnopqr"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.file.type",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.threatLevel",
+                    "data_type": "numeric",
                     "example_values": [
-                        "pe"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.taskReference.resourceReference.filesDownloadFinished",
-                    "data_type": "boolean",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.allSignalGroups.*.verdict.verdict",
+                    "data_type": "string",
                     "example_values": [
-                        true,
-                        false
+                        "MALICIOUS"
                     ]
                 },
                 {
@@ -1447,133 +1540,28 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.name",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.file.hash",
                     "data_type": "string",
                     "example_values": [
-                        "osint"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.additionalInfo",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.file.name",
                     "data_type": "string",
                     "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                        "bad_file.exe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.ID",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.file.type",
                     "data_type": "string",
                     "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                        "pe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.subtaskReferences.*.state",
-                    "data_type": "string",
-                    "example_values": [
-                        "SUCCESS"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "OSINT"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.name",
-                    "data_type": "string",
-                    "example_values": [
-                        "osint"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.resourceReference.ID",
-                    "data_type": "string",
-                    "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.opcount",
-                    "data_type": "numeric",
-                    "example_values": [
-                        4
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.subtaskReferences.*.processTime",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1006
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.identifier",
-                    "data_type": "string",
-                    "example_values": [
-                        "S001"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.description",
-                    "data_type": "string",
-                    "example_values": [
-                        "Found a base64 encoded http(s) URL prefix"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.averageSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.peakSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.finalSignalStrength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "INFORMATIONAL"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.threatLevel",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.2
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.verdict.confidence",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.strength",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.25
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.isStrictlyBasedOnInputData",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.filesDownloadFinished",
                     "data_type": "boolean",
                     "example_values": [
                         true,
@@ -1581,38 +1569,101 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.signalReadable",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.name",
                     "data_type": "string",
                     "example_values": [
-                        "Found artifact in string"
+                        "file"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originPath",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.opcount",
+                    "data_type": "numeric",
                     "example_values": [
-                        "file.strings.references"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originType",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.processTime",
+                    "data_type": "numeric",
                     "example_values": [
-                        "EXTRACTED_FILE"
+                        8000
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.allSignalGroups.*.signals.*.originIdentifier",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.ID",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.postprocessIocs.*",
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.additionalInfo",
                     "data_type": "string",
                     "example_values": [
-                        "url"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "visualization"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.opcount",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.processTime",
+                    "data_type": "numeric",
+                    "example_values": [
+                        235
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.ID",
+                    "data_type": "string",
+                    "example_values": [
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "visualization"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.resourceReference.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "VISUALIZATION"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.subtaskReferences.*.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "SUCCESS"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.resourceReference.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "TRANSFORM_FILE"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.taskReference.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "SUCCESS"
                     ]
                 },
                 {
@@ -1623,25 +1674,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.file.name",
+                    "data_path": "action_result.summary.rejected_reasons.*",
                     "data_type": "string",
                     "example_values": [
-                        "https://www.google.com"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.file.hash",
-                    "data_type": "string",
-                    "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.file.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "other",
-                        "pe"
+                        "ARCHIVE_ENCRYPTED"
                     ]
                 },
                 {
@@ -1652,21 +1688,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.total_unknown",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3
-                    ]
-                },
-                {
                     "data_path": "action_result.summary.total_informational",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3
-                    ]
-                },
-                {
-                    "data_path": "action_result.summary.total_suspicious",
                     "data_type": "numeric",
                     "example_values": [
                         3
@@ -1694,10 +1716,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.rejected_reasons.*",
+                    "data_path": "action_result.summary.total_suspicious",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.total_unknown",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "ARCHIVE_ENCRYPTED"
+                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
                     ]
                 },
                 {
@@ -1712,13 +1748,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
                     ]
                 }
             ],
@@ -1773,38 +1802,31 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.id",
-                    "data_type": "string",
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric",
                     "example_values": [
-                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+                        10
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.file.name",
-                    "data_type": "string",
+                    "data_path": "action_result.parameter.page",
+                    "data_type": "numeric",
                     "example_values": [
-                        "bad_file.exe"
+                        1
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.file.mime_type",
-                    "data_type": "string",
+                    "data_path": "action_result.parameter.page_size",
+                    "data_type": "numeric",
                     "example_values": [
-                        "image/jpeg"
+                        10
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.file.short_type",
+                    "data_path": "action_result.parameter.query",
                     "data_type": "string",
                     "example_values": [
-                        "jpg"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.file.sha256",
-                    "data_type": "string",
-                    "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                        "filename = test.exe"
                     ]
                 },
                 {
@@ -1815,121 +1837,45 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.scan_init.id",
+                    "data_path": "action_result.data.*.file.mime_type",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmn"
+                        "image/jpeg"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.state",
+                    "data_path": "action_result.data.*.file.name",
                     "data_type": "string",
                     "example_values": [
-                        "success_partial"
+                        "bad_file.exe"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "informational",
-                        "benign",
-                        "malicious"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.original_verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "malicious"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.source",
-                    "data_type": "string",
-                    "example_values": [
-                        "MEDIA_TYPE"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.sourceIdentifier",
+                    "data_path": "action_result.data.*.file.sha256",
                     "data_type": "string",
                     "example_values": [
                         "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.tags.*.isRootTag",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.tag.name",
+                    "data_path": "action_result.data.*.file.short_type",
                     "data_type": "string",
                     "example_values": [
-                        "html",
-                        "png"
+                        "jpg"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.tags.*.tag.synonyms.*",
+                    "data_path": "action_result.data.*.id",
                     "data_type": "string",
                     "example_values": [
-                        "synonym"
+                        "00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.tags.*.tag.descriptions.description",
+                    "data_path": "action_result.data.*.matches.*.matches.sha1.*.value",
                     "data_type": "string",
                     "example_values": [
-                        "This is a description"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.tag.descriptions.cluster.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "malpedia"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.tag.descriptions.cluster.authors.*",
-                    "data_type": "string",
-                    "example_values": [
-                        "John Doe"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.tag.verdict.verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "LIKELY_MALICIOUS",
-                        "BENIGN"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.tag.verdict.threatLevel",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0.75,
-                        0.5
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.tags.*.tag.verdict.confidence",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.matches.*.origin.sha256",
-                    "data_type": "string",
-                    "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123"
                     ]
                 },
                 {
@@ -1954,10 +1900,109 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.matches.*.matches.sha1.*.value",
+                    "data_path": "action_result.data.*.matches.*.origin.sha256",
                     "data_type": "string",
                     "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123"
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.original_verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.scan_init.id",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmn"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.state",
+                    "data_type": "string",
+                    "example_values": [
+                        "success_partial"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.isRootTag",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.source",
+                    "data_type": "string",
+                    "example_values": [
+                        "MEDIA_TYPE"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.sourceIdentifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.descriptions.cluster.authors.*",
+                    "data_type": "string",
+                    "example_values": [
+                        "John Doe"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.descriptions.cluster.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "malpedia"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.descriptions.description",
+                    "data_type": "string",
+                    "example_values": [
+                        "This is a description"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "html"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.synonyms.*",
+                    "data_type": "string",
+                    "example_values": [
+                        "synonym"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.verdict.confidence",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.verdict.threatLevel",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0.75
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.tags.*.tag.verdict.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "BENIGN"
                     ]
                 },
                 {
@@ -1965,6 +2010,13 @@
                     "data_type": "string",
                     "example_values": [
                         "02/14/2023, 02:34:51"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "informational"
                     ]
                 },
                 {
@@ -1982,21 +2034,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.total_unknown",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3
-                    ]
-                },
-                {
                     "data_path": "action_result.summary.total_informational",
-                    "data_type": "numeric",
-                    "example_values": [
-                        3
-                    ]
-                },
-                {
-                    "data_path": "action_result.summary.total_suspicious",
                     "data_type": "numeric",
                     "example_values": [
                         3
@@ -2017,6 +2055,27 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.summary.total_suspicious",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.total_unknown",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Total benign: 0, Total unknown: 0, Total informational: 0, Total suspicious: 2, Total likely malicious: 0, Total malicious: 0, Available report count: 5"
+                    ]
+                },
+                {
                     "data_path": "summary.total_objects",
                     "data_type": "numeric",
                     "example_values": [
@@ -2028,13 +2087,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Total benign: 0, Total unknown: 0, Total informational: 0, Total suspicious: 2, Total likely malicious: 0, Total malicious: 0, Available report count: 5"
                     ]
                 }
             ],
@@ -2064,82 +2116,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.sha256",
+                    "data_path": "action_result.parameter.sha256",
                     "data_type": "string",
                     "example_values": [
                         "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.overall_verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "malicious",
-                        "informational"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.fuzzyhash.hash",
-                    "data_type": "string",
-                    "example_values": [
-                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.fuzzyhash.verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "informational",
-                        "unknown"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.total_av_engines",
-                    "data_type": "numeric",
-                    "example_values": [
-                        30,
-                        15
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.detected_av_engines",
-                    "data_type": "numeric",
-                    "example_values": [
-                        30,
-                        15
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.scan_time",
-                    "data_type": "string",
-                    "example_values": [
-                        "2023-05-25T01:15:45.789000"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.community.vote_malicious",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0,
-                        5,
-                        10
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.community.vote_benign",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
-                        5,
-                        10
+                        0
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.community.vote_malicious",
+                    "data_type": "numeric",
                     "example_values": [
-                        "malicious",
-                        "informational"
+                        0
                     ]
                 },
                 {
@@ -2157,10 +2151,73 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.fuzzyhash.hash",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.fuzzyhash.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "informational"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.detected_av_engines",
+                    "data_type": "numeric",
+                    "example_values": [
+                        30
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.scan_time",
+                    "data_type": "string",
+                    "example_values": [
+                        "2023-05-25T01:15:45.789000"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.total_av_engines",
+                    "data_type": "numeric",
+                    "example_values": [
+                        30
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.overall_verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.sha256",
+                    "data_type": "string",
+                    "example_values": [
+                        "0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr"
+                    ]
+                },
+                {
                     "data_path": "action_result.summary.verdict",
                     "data_type": "string",
                     "example_values": [
                         3
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Verdict: malicious"
                     ]
                 },
                 {
@@ -2175,13 +2232,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Verdict: malicious"
                     ]
                 }
             ],
@@ -2211,65 +2261,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ioc_type",
+                    "data_path": "action_result.parameter.ip",
                     "data_type": "string",
                     "example_values": [
-                        "ip"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.ioc_value",
-                    "data_type": "string",
-                    "example_values": [
-                        "google.com"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.overall_verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "malicious",
-                        "informational"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.detected",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.scan_time",
-                    "data_type": "string",
-                    "example_values": [
-                        "2023-05-25T01:15:45.789000"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.community.vote_malicious",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0,
-                        5,
-                        10
+                        "8.8.8.8"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.community.vote_benign",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
-                        5,
-                        10
+                        0
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.community.vote_malicious",
+                    "data_type": "numeric",
                     "example_values": [
-                        "malicious",
-                        "informational"
+                        0
                     ]
                 },
                 {
@@ -2287,10 +2296,59 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ioc_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "ip"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ioc_value",
+                    "data_type": "string",
+                    "example_values": [
+                        "test.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.detected",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.scan_time",
+                    "data_type": "string",
+                    "example_values": [
+                        "2023-05-25T01:15:45.789000"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.overall_verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
                     "data_path": "action_result.summary.verdict",
                     "data_type": "string",
                     "example_values": [
                         3
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Verdict: malicious"
                     ]
                 },
                 {
@@ -2305,13 +2363,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Verdict: malicious"
                     ]
                 }
             ],
@@ -2341,65 +2392,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ioc_type",
+                    "data_path": "action_result.parameter.domain",
                     "data_type": "string",
                     "example_values": [
-                        "domain"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.ioc_value",
-                    "data_type": "string",
-                    "example_values": [
-                        "google.com"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.overall_verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "malicious",
-                        "informational"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.detected",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.scan_time",
-                    "data_type": "string",
-                    "example_values": [
-                        "2023-05-25T01:15:45.789000"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.community.vote_malicious",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0,
-                        5,
-                        10
+                        "test.com"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.community.vote_benign",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
-                        5,
-                        10
+                        0
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.community.vote_malicious",
+                    "data_type": "numeric",
                     "example_values": [
-                        "malicious",
-                        "informational"
+                        0
                     ]
                 },
                 {
@@ -2417,10 +2427,59 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ioc_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ioc_value",
+                    "data_type": "string",
+                    "example_values": [
+                        "test.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.detected",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.scan_time",
+                    "data_type": "string",
+                    "example_values": [
+                        "2023-05-25T01:15:45.789000"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.overall_verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
                     "data_path": "action_result.summary.verdict",
                     "data_type": "string",
                     "example_values": [
                         3
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Verdict: malicious"
                     ]
                 },
                 {
@@ -2435,13 +2494,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         2
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Verdict: malicious"
                     ]
                 }
             ],
@@ -2471,65 +2523,24 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ioc_type",
+                    "data_path": "action_result.parameter.url",
                     "data_type": "string",
                     "example_values": [
-                        "url"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.ioc_value",
-                    "data_type": "string",
-                    "example_values": [
-                        "google.com"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.overall_verdict",
-                    "data_type": "string",
-                    "example_values": [
-                        "malicious",
-                        "informational"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.detected",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.mdcloud.scan_time",
-                    "data_type": "string",
-                    "example_values": [
-                        "2023-05-25T01:15:45.789000"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.community.vote_malicious",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0,
-                        5,
-                        10
+                        "https://jusrandomlink.com/1234"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.community.vote_benign",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
-                        5,
-                        10
+                        0
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
-                    "data_type": "string",
+                    "data_path": "action_result.data.*.community.vote_malicious",
+                    "data_type": "numeric",
                     "example_values": [
-                        "malicious",
-                        "informational"
+                        0
                     ]
                 },
                 {
@@ -2547,10 +2558,59 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.filescan_reports.*.verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ioc_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ioc_value",
+                    "data_type": "string",
+                    "example_values": [
+                        "test.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.detected",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.mdcloud.scan_time",
+                    "data_type": "string",
+                    "example_values": [
+                        "2023-05-25T01:15:45.789000"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.overall_verdict",
+                    "data_type": "string",
+                    "example_values": [
+                        "malicious"
+                    ]
+                },
+                {
                     "data_path": "action_result.summary.verdict",
                     "data_type": "string",
                     "example_values": [
                         3
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Verdict: malicious"
                     ]
                 },
                 {
@@ -2566,13 +2626,6 @@
                     "example_values": [
                         2
                     ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Verdict: malicious"
-                    ]
                 }
             ],
             "versions": "EQ(*)"
@@ -2585,28 +2638,20 @@
                 "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
             },
             {
-                "module": "certifi",
-                "input_file": "wheels/py3/certifi-2023.5.7-py3-none-any.whl"
-            },
+                "module": "soupsieve",
+                "input_file": "wheels/py3/soupsieve-2.3.2.post1-py3-none-any.whl"
+            }
+        ]
+    },
+    "pip39_dependencies": {
+        "wheel": [
             {
-                "module": "chardet",
-                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
-            },
-            {
-                "module": "idna",
-                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
-            },
-            {
-                "module": "requests",
-                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
+                "module": "beautifulsoup4",
+                "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
             },
             {
                 "module": "soupsieve",
-                "input_file": "wheels/py3/soupsieve-2.3.2.post1-py3-none-any.whl"
-            },
-            {
-                "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.13-py2.py3-none-any.whl"
+                "input_file": "wheels/py3/soupsieve-2.4.1-py3-none-any.whl"
             }
         ]
     }
