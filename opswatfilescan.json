@@ -4,12 +4,12 @@
     "description": "OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction",
     "type": "sandbox",
     "product_vendor": "OPSWAT",
-    "logo": "logo_opswatfilescan_dark.svg",
-    "logo_dark": "logo_opswatfilescan.svg",
+    "logo": "logo_opswatfilescan.svg",
+    "logo_dark": "logo_opswatfilescan_dark.svg",
     "product_name": "Filescan",
     "python_version": "3",
     "product_version_regex": ".*",
-    "publisher": "OPSWAT",
+    "publisher": "Splunk",
     "contributors": [
         {
             "name": "Aniko Bartos"
@@ -96,7 +96,7 @@
                 },
                 "password": {
                     "description": "Custom password, in case uploaded archive is protected",
-                    "data_type": "password",
+                    "data_type": "string",
                     "order": 1
                 },
                 "is_private": {
@@ -137,7 +137,7 @@
                 },
                 {
                     "data_path": "action_result.parameter.password",
-                    "data_type": "password",
+                    "data_type": "string",
                     "example_values": [
                         "EAMPLEdajjccds"
                     ]
@@ -931,24 +931,18 @@
                 },
                 "password": {
                     "description": "Custom password, in case uploaded archive is protected",
-                    "data_type": "password",
-                    "required": false,
-                    "primary": false,
+                    "data_type": "string",
                     "order": 1
                 },
                 "is_private": {
                     "description": "If file should not be available for download by other users",
                     "data_type": "boolean",
-                    "required": false,
                     "default": false,
-                    "primary": false,
                     "order": 2
                 },
                 "description": {
                     "description": "Uploaded file/url description",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
                     "order": 3
                 }
             },
@@ -978,7 +972,7 @@
                 },
                 {
                     "data_path": "action_result.parameter.password",
-                    "data_type": "password",
+                    "data_type": "string",
                     "example_values": [
                         "EAMPLEdajjccds"
                     ]
@@ -993,7 +987,7 @@
                     "example_values": [
                         "0123456789abcdefghijklmnopqrstuvwxyz0123"
                     ],
-                    "column_name": "vault_id",
+                    "column_name": "Vault ID",
                     "column_order": 0
                 },
                 {
@@ -1764,26 +1758,22 @@
                     "description": "The query string",
                     "data_type": "string",
                     "required": true,
-                    "primary": true,
                     "order": 0
                 },
                 "limit": {
                     "description": "Number of total results, maximum 50 (if page and page_size was also provided, then it will be ignored)",
                     "data_type": "numeric",
                     "default": 10,
-                    "required": false,
                     "order": 1
                 },
                 "page": {
                     "description": "Page number, starting from 1",
                     "data_type": "numeric",
-                    "required": false,
                     "order": 2
                 },
                 "page_size": {
                     "description": "Page size. Can be 5, 10 or 20",
                     "data_type": "numeric",
-                    "required": false,
                     "value_list": [
                         "5",
                         "10",

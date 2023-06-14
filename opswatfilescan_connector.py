@@ -405,9 +405,9 @@ class OpswatFilescanConnector(BaseConnector):
             limit = param.get("limit") or 10
             total_available_items = 0
             if (
-                (page_size and int(page_size) not in [5, 10, 20])
-                or (page and int(page) <= 0)
-                or (limit and (int(limit) <= 0 or int(limit) > 50))
+                (page_size and int(page_size) not in [5, 10, 20]) or
+                (page and int(page) <= 0) or
+                (limit and (int(limit) <= 0 or int(limit) > 50))
             ):
                 self.save_progress("ERROR: Invalid parameter")
                 return action_result.set_status(
@@ -641,16 +641,14 @@ class OpswatFilescanConnector(BaseConnector):
         self._timeout = int(config.get("timeout"))
 
         if (
-            self._timeout < OPSWAT_FILESCAN_TIMEOUT_MIN
-            or self._timeout > OPSWAT_FILESCAN_TIMEOUT_MAX
+            self._timeout < OPSWAT_FILESCAN_TIMEOUT_MIN or self._timeout > OPSWAT_FILESCAN_TIMEOUT_MAX
         ):
             self.save_progress(
                 f"ERROR: Detonate timeout must be an integer between {OPSWAT_FILESCAN_TIMEOUT_MIN} and {OPSWAT_FILESCAN_TIMEOUT_MAX}!"
             )
             return phantom.APP_ERROR
         if (
-            self._poll_interval < OPSWAT_FILESCAN_POLL_INTERVAL_MIN
-            or self._poll_interval > OPSWAT_FILESCAN_POLL_INTERVAL_MAX
+            self._poll_interval < OPSWAT_FILESCAN_POLL_INTERVAL_MIN or self._poll_interval > OPSWAT_FILESCAN_POLL_INTERVAL_MAX
         ):
             self.save_progress(
                 f"ERROR: Poll interval must be an integer between {OPSWAT_FILESCAN_POLL_INTERVAL_MIN} and {OPSWAT_FILESCAN_POLL_INTERVAL_MAX}!"
