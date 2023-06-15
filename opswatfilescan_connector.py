@@ -404,11 +404,9 @@ class OpswatFilescanConnector(BaseConnector):
             page = param.get("page", None)
             limit = param.get("limit") or 10
             total_available_items = 0
-            if (
-                (page_size and int(page_size) not in [5, 10, 20]) or
-                (page and int(page) <= 0) or
-                (limit and (int(limit) <= 0 or int(limit) > 50))
-            ):
+            if (page_size and int(page_size) not in [5, 10, 20]) or \
+                (page and int(page) <= 0) or \
+                    (limit and (int(limit) <= 0 or int(limit) > 50)):
                 self.save_progress("ERROR: Invalid parameter")
                 return action_result.set_status(
                     phantom.APP_ERROR, "ERROR: Invalid parameter"
