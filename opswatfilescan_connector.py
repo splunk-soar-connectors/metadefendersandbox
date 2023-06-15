@@ -434,7 +434,7 @@ class OpswatFilescanConnector(BaseConnector):
                     return action_result.set_status(
                         phantom.APP_ERROR, f"ERROR: {response_data}"
                     )
-                items = response_data.get("items")
+                items = response_data.get("items", [])
                 total_available_items = response_data.get("count", len(items))
             else:
                 page_size = 20
