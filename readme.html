@@ -1,0 +1,66 @@
+<!-- File: readme.html
+  Copyright (c) OPSWAT, 2023
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+either express or implied. See the License for the specific language governing permissions
+and limitations under the License.
+-->
+
+<html>
+    <head></head>
+    <body>
+        <h1>OPSWAT Filescan App</h1>
+        OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology,
+        enabling zero-day malware detection and comprehensive Indicator of
+        Compromise (IOC) extraction.
+
+        <h2>What does this App do?</h2>
+        This app includes the OPSWAT Filescan basic integration that does the
+        following:
+        <dl>
+            <dt><b>Detonate file</b></dt>
+            <dd>Retrieve detonation analysis results for file</dd>
+            <dt><b>Detonate URL</b></dt>
+            <dd>Retrieve detonation analysis results for URL</dd>
+            <dt><b>Search report</b></dt>
+            <dd>
+                Search for scan reports on Filescan using parameters specified
+                in the 'query' field.
+            </dd>
+            <dt><b>File reputation</b></dt>
+            <dd>
+                Get the fast reputation for one given hash (returns the last 10
+                Filescan reports)
+            </dd>
+            <dt><b>IP/Domain/URL reputation</b></dt>
+            <dd>
+                Get the fast reputation for one given IOC. E.g.: IP, Domain or
+                URL (returns the last 10 Filescan reports)
+            </dd>
+        </dl>
+
+        <p>This app requires a correctly set up OPSWAT Filescan API key to use.</p>
+
+        <h2>Port Information</h2>
+        <p>
+            The app uses HTTPS protocol if it uses the OPSWAT Filescan community server (default). You can deviate from this if you want to use your own, on-prem OPSWAT Filescan server. Below are the default ports used by Splunk SOAR.
+            <table>
+                <tr class=plain>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Service Name</th>
+                    <th>Transport Protocol</th>
+                    <th>Port</th>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https</td>
+                    <td>tcp</td>
+                    <td>443</td>
+                </tr>
+            </table>
+        </p>
+
+    </body>
+</html>
