@@ -1,8 +1,1 @@
 **Unreleased**
-* Initial release with the following actions
-    * detonate file
-    * detonate url
-    * search report
-    * file reputation
-    * ip/domain/url reputation
-    * test connectivity
