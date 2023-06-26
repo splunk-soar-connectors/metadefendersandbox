@@ -2085,7 +2085,7 @@
         {
             "action": "file reputation",
             "identifier": "file_reputation",
-            "description": "Get the reputation for one given hash (returns with the last 10 Filescan reports)",
+            "description": "Get the reputation for one given hash (returns with the last 10 Filescan Sandbox reports)",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -2230,7 +2230,7 @@
         {
             "action": "ip reputation",
             "identifier": "ip_reputation",
-            "description": "Get the reputation for one given IP address (returns with the last 10 Filescan reports)",
+            "description": "Get the reputation for one given IP address (returns with the last 10 Filescan Sandbox reports)",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -2361,7 +2361,7 @@
         {
             "action": "domain reputation",
             "identifier": "domain_reputation",
-            "description": "Get the reputation for one given Domain address (returns with the last 10 Filescan reports)",
+            "description": "Get the reputation for one given Domain address (returns with the last 10 Filescan Sandbox reports)",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -2492,7 +2492,7 @@
         {
             "action": "url reputation",
             "identifier": "url_reputation",
-            "description": "Get the reputation for one given URL address (returns with the last 10 Filescan reports)",
+            "description": "Get the reputation for one given URL address (returns with the last 10 Filescan Sandbox reports)",
             "type": "investigate",
             "read_only": true,
             "parameters": {
