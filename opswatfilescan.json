@@ -1,12 +1,12 @@
 {
     "appid": "6ad1c442-3bce-4df7-a0e2-4b4e1f3406fe",
-    "name": "OPSWAT Filescan",
-    "description": "OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction",
+    "name": "OPSWAT Filescan Sandbox",
+    "description": "OPSWAT Filescan Sandbox is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction",
     "type": "sandbox",
     "product_vendor": "OPSWAT",
     "logo": "logo_opswatfilescan.svg",
     "logo_dark": "logo_opswatfilescan_dark.svg",
-    "product_name": "Filescan",
+    "product_name": "Filescan Sandbox",
     "python_version": "3",
     "product_version_regex": ".*",
     "publisher": "OPSWAT",
@@ -19,7 +19,7 @@
         }
     ],
     "license": "Copyright (c) OPSWAT, 2023",
-    "app_version": "1.0.1",
+    "app_version": "1.0.2",
     "utctime_updated": "2023-05-12T18:00:17.655821Z",
     "package_name": "phantom_opswatfilescan",
     "main_module": "opswatfilescan_connector.py",
@@ -40,7 +40,7 @@
             "id": 0
         },
         "api_key": {
-            "description": "The OPSWAT Filescan API Key to use for connection",
+            "description": "The OPSWAT Filescan Sandbox API Key to use for connection",
             "data_type": "password",
             "required": true,
             "order": 1,
@@ -79,7 +79,7 @@
             "action": "detonate url",
             "identifier": "detonate_url",
             "description": "Retrieve detonation analysis results for URL",
-            "verbose": "Detonate url will send an URL to OPSWAT Filescan for analysis.",
+            "verbose": "Detonate url will send an URL to OPSWAT Filescan Sandbox for analysis.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -913,7 +913,7 @@
             "action": "detonate file",
             "identifier": "detonate_file",
             "description": "Retrieve detonation analysis results for file",
-            "verbose": "Detonate url will send a file from Vault to OPSWAT Filescan for analysis.",
+            "verbose": "Detonate url will send a file from Vault to OPSWAT Filescan Sandbox for analysis.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
