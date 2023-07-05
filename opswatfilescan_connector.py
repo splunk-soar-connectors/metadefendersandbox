@@ -14,8 +14,6 @@
 # and limitations under the License.
 #
 
-from __future__ import print_function, unicode_literals
-
 import json
 import time
 
@@ -276,7 +274,7 @@ class OpswatFilescanConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_detonate_url(self, param):
-        """This function is used to submit a URL for analysis on OPSWAT Filescan"""
+        """This function is used to submit a URL for analysis on OPSWAT Filescan Sandbox"""
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
@@ -320,7 +318,7 @@ class OpswatFilescanConnector(BaseConnector):
             )
 
     def _handle_detonate_file(self, param):
-        """This function is used to submit a file for analysis on OPSWAT Filescan"""
+        """This function is used to submit a file for analysis on OPSWAT Filescan Sandbox"""
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
@@ -390,7 +388,7 @@ class OpswatFilescanConnector(BaseConnector):
             )
 
     def _handle_search_terms(self, param):
-        """This function is used to search between OPSWAT Filescan reports"""
+        """This function is used to search between OPSWAT Filescan Sandbox reports"""
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
