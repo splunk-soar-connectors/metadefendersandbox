@@ -1,3 +1,2 @@
 **Unreleased**
-
-App renaming from "OPSWAT Filescan" to "OPSWAT Filescan Sandbox"
+* App renaming from "OPSWAT Filescan" to "OPSWAT Filescan Sandbox"
