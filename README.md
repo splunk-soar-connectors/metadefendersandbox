@@ -1,14 +1,14 @@
 [comment]: # "Auto-generated SOAR connector documentation"
-# OPSWAT Filescan
+# OPSWAT Filescan Sandbox
 
 Publisher: OPSWAT  
-Connector Version: 1.0.1  
+Connector Version: 1.1.0  
 Product Vendor: OPSWAT  
-Product Name: Filescan  
+Product Name: Filescan Sandbox  
 Product Version Supported (regex): ".\*"  
 Minimum Product Version: 6.0.0  
 
-OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
+OPSWAT Filescan Sandbox is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
 
 [comment]: # " File: README.md"
 [comment]: # "  Copyright (c) OPSWAT, 2023"
@@ -21,14 +21,14 @@ OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabl
 [comment]: # "either express or implied. See the License for the specific language governing permissions"
 [comment]: # "and limitations under the License."
 [comment]: # ""
-# OPSWAT Filescan App
+# OPSWAT Filescan Sandbox App
 
-OPSWAT Filescan (Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware
+OPSWAT Filescan Sandbox is a unique adaptive threat analysis technology, enabling zero-day malware
 detection and comprehensive Indicator of Compromise (IOC) extraction.
 
 ## What does this App do?
 
-This app includes the OPSWAT Filescan basic integration that does the following:
+This app includes the OPSWAT Filescan Sandbox basic integration that does the following:
 
 **Detonate file**  
 Retrieve detonation analysis results for file
@@ -37,22 +37,22 @@ Retrieve detonation analysis results for file
 Retrieve detonation analysis results for URL
 
 **Search report**  
-Search for scan reports on Filescan using parameters specified in the 'query' field.
+Search for scan reports on Filescan Sandbox using parameters specified in the 'query' field.
 
 **File reputation**  
-Get the fast reputation for one given hash (returns the last 10 Filescan reports)
+Get the fast reputation for one given hash (returns the last 10 Filescan Sandbox reports)
 
 **IP/Domain/URL reputation**  
 Get the fast reputation for one given IOC. E.g.: IP, Domain or URL (returns the last 10 Filescan
-reports)
+Sandbox reports)
 
-This app requires a correctly set up OPSWAT Filescan API key to use.
+This app requires a correctly set up OPSWAT Filescan Sandbox API key to use.
 
 ## Port Information
 
-The app uses HTTPS protocol if it uses the OPSWAT Filescan community server (default). You can
-deviate from this if you want to use your own, on-prem OPSWAT Filescan server. Below are the default
-ports used by Splunk SOAR.
+The app uses HTTPS protocol if it uses the OPSWAT Filescan Sandbox community server (default). You
+can deviate from this if you want to use your own, on-prem OPSWAT Filescan Sandbox server. Below are
+the default ports used by Splunk SOAR.
 
 |         Service Name | Transport Protocol | Port |
 |----------------------|--------------------|------|
@@ -60,12 +60,12 @@ ports used by Splunk SOAR.
 
 
 ### Configuration Variables
-The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a Filescan asset in SOAR.
+The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a Filescan Sandbox asset in SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
 **server_url** |  required  | string | Server URL (e.g. https://www.filescan.io)
-**api_key** |  required  | password | The OPSWAT Filescan API Key to use for connection
+**api_key** |  required  | password | The OPSWAT Filescan Sandbox API Key to use for connection
 **poll_interval** |  optional  | numeric | Number of seconds to poll for a detonation result (Default: 5, Range: [1:30])
 **timeout** |  optional  | numeric | Request Timeout (Default: 60 seconds, Range: [30:300])
 
@@ -74,10 +74,10 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [detonate url](#action-detonate-url) - Retrieve detonation analysis results for URL  
 [detonate file](#action-detonate-file) - Retrieve detonation analysis results for file  
 [search terms](#action-search-terms) - Search for scan reports on Filescan using parameters specified in the 'query' field  
-[file reputation](#action-file-reputation) - Get the reputation for one given hash (returns with the last 10 Filescan reports)  
-[ip reputation](#action-ip-reputation) - Get the reputation for one given IP address (returns with the last 10 Filescan reports)  
-[domain reputation](#action-domain-reputation) - Get the reputation for one given Domain address (returns with the last 10 Filescan reports)  
-[url reputation](#action-url-reputation) - Get the reputation for one given URL address (returns with the last 10 Filescan reports)  
+[file reputation](#action-file-reputation) - Get the reputation for one given hash (returns with the last 10 Filescan Sandbox reports)  
+[ip reputation](#action-ip-reputation) - Get the reputation for one given IP address (returns with the last 10 Filescan Sandbox reports)  
+[domain reputation](#action-domain-reputation) - Get the reputation for one given Domain address (returns with the last 10 Filescan Sandbox reports)  
+[url reputation](#action-url-reputation) - Get the reputation for one given URL address (returns with the last 10 Filescan Sandbox reports)  
 
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
@@ -97,7 +97,7 @@ Retrieve detonation analysis results for URL
 Type: **investigate**  
 Read only: **True**
 
-Detonate url will send an URL to OPSWAT Filescan for analysis.
+Detonate url will send an URL to OPSWAT Filescan Sandbox for analysis.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -229,7 +229,7 @@ Retrieve detonation analysis results for file
 Type: **investigate**  
 Read only: **True**
 
-Detonate url will send a file from Vault to OPSWAT Filescan for analysis.
+Detonate url will send a file from Vault to OPSWAT Filescan Sandbox for analysis.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -416,7 +416,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'file reputation'
-Get the reputation for one given hash (returns with the last 10 Filescan reports)
+Get the reputation for one given hash (returns with the last 10 Filescan Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**
@@ -449,7 +449,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'ip reputation'
-Get the reputation for one given IP address (returns with the last 10 Filescan reports)
+Get the reputation for one given IP address (returns with the last 10 Filescan Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**
@@ -480,7 +480,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'domain reputation'
-Get the reputation for one given Domain address (returns with the last 10 Filescan reports)
+Get the reputation for one given Domain address (returns with the last 10 Filescan Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**
@@ -511,7 +511,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'url reputation'
-Get the reputation for one given URL address (returns with the last 10 Filescan reports)
+Get the reputation for one given URL address (returns with the last 10 Filescan Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**
