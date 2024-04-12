@@ -1,14 +1,14 @@
 [comment]: # "Auto-generated SOAR connector documentation"
-# OPSWAT Filescan Sandbox
+# MetaDefender Sandbox
 
 Publisher: OPSWAT  
 Connector Version: 1.1.0  
 Product Vendor: OPSWAT  
-Product Name: Filescan Sandbox  
+Product Name: MetaDefender Sandbox  
 Product Version Supported (regex): ".\*"  
 Minimum Product Version: 6.0.0  
 
-OPSWAT Filescan Sandbox is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
+MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
 
 [comment]: # " File: README.md"
 [comment]: # "  Copyright (c) OPSWAT, 2023"
@@ -21,14 +21,14 @@ OPSWAT Filescan Sandbox is a unique adaptive threat analysis technology, enablin
 [comment]: # "either express or implied. See the License for the specific language governing permissions"
 [comment]: # "and limitations under the License."
 [comment]: # ""
-# OPSWAT Filescan Sandbox App
+# MetaDefender Sandbox App
 
-OPSWAT Filescan Sandbox is a unique adaptive threat analysis technology, enabling zero-day malware
+MetaDefender Sandbox is a unique adaptive threat analysis technology, enabling zero-day malware
 detection and comprehensive Indicator of Compromise (IOC) extraction.
 
 ## What does this App do?
 
-This app includes the OPSWAT Filescan Sandbox basic integration that does the following:
+This app includes the MetaDefender Sandbox basic integration that does the following:
 
 **Detonate file**  
 Retrieve detonation analysis results for file
@@ -46,12 +46,12 @@ Get the fast reputation for one given hash (returns the last 10 Filescan Sandbox
 Get the fast reputation for one given IOC. E.g.: IP, Domain or URL (returns the last 10 Filescan
 Sandbox reports)
 
-This app requires a correctly set up OPSWAT Filescan Sandbox API key to use.
+This app requires a correctly set up MetaDefender Sandbox API key to use.
 
 ## Port Information
 
-The app uses HTTPS protocol if it uses the OPSWAT Filescan Sandbox community server (default). You
-can deviate from this if you want to use your own, on-prem OPSWAT Filescan Sandbox server. Below are
+The app uses HTTPS protocol if it uses the MetaDefender Sandbox community server (default). You
+can deviate from this if you want to use your own, on-prem MetaDefender Sandbox server. Below are
 the default ports used by Splunk SOAR.
 
 |         Service Name | Transport Protocol | Port |
@@ -65,7 +65,7 @@ The below configuration variables are required for this Connector to operate.  T
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
 **server_url** |  required  | string | Server URL (e.g. https://www.filescan.io)
-**api_key** |  required  | password | The OPSWAT Filescan Sandbox API Key to use for connection
+**api_key** |  required  | password | The MetaDefender Sandbox API Key to use for connection
 **poll_interval** |  optional  | numeric | Number of seconds to poll for a detonation result (Default: 5, Range: [1:30])
 **timeout** |  optional  | numeric | Request Timeout (Default: 60 seconds, Range: [30:300])
 
@@ -97,7 +97,7 @@ Retrieve detonation analysis results for URL
 Type: **investigate**  
 Read only: **True**
 
-Detonate url will send an URL to OPSWAT Filescan Sandbox for analysis.
+Detonate url will send an URL to MetaDefender Sandbox for analysis.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
@@ -229,7 +229,7 @@ Retrieve detonation analysis results for file
 Type: **investigate**  
 Read only: **True**
 
-Detonate url will send a file from Vault to OPSWAT Filescan Sandbox for analysis.
+Detonate url will send a file from Vault to MetaDefender Sandbox for analysis.
 
 #### Action Parameters
 PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
