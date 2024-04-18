@@ -637,8 +637,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
         self._timeout = int(config.get("timeout"))
 
         if (
-            self._timeout < METADEFENDER_SANDBOX_TIMEOUT_MIN or
-                self._timeout > METADEFENDER_SANDBOX_TIMEOUT_MAX
+            self._timeout < METADEFENDER_SANDBOX_TIMEOUT_MIN or self._timeout > METADEFENDER_SANDBOX_TIMEOUT_MAX
         ):
             self.save_progress(
                 f"ERROR: Detonate timeout must be an integer between {METADEFENDER_SANDBOX_TIMEOUT_MIN} and {METADEFENDER_SANDBOX_TIMEOUT_MAX}!"
