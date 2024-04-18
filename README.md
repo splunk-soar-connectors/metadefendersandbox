@@ -37,13 +37,13 @@ Retrieve detonation analysis results for file
 Retrieve detonation analysis results for URL
 
 **Search report**  
-Search for scan reports on Filescan Sandbox using parameters specified in the 'query' field.
+Search for scan reports on MetaDefender Sandbox using parameters specified in the 'query' field.
 
 **File reputation**  
-Get the fast reputation for one given hash (returns the last 10 Filescan Sandbox reports)
+Get the fast reputation for one given hash (returns the last 10 MetaDefender Sandbox reports)
 
 **IP/Domain/URL reputation**  
-Get the fast reputation for one given IOC. E.g.: IP, Domain or URL (returns the last 10 Filescan
+Get the fast reputation for one given IOC. E.g.: IP, Domain or URL (returns the last 10 MetaDefender
 Sandbox reports)
 
 This app requires a correctly set up MetaDefender Sandbox API key to use.
@@ -60,7 +60,7 @@ the default ports used by Splunk SOAR.
 
 
 ### Configuration Variables
-The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a Filescan Sandbox asset in SOAR.
+The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a MetaDefender Sandbox asset in SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
@@ -73,11 +73,11 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration  
 [detonate url](#action-detonate-url) - Retrieve detonation analysis results for URL  
 [detonate file](#action-detonate-file) - Retrieve detonation analysis results for file  
-[search terms](#action-search-terms) - Search for scan reports on Filescan using parameters specified in the 'query' field  
-[file reputation](#action-file-reputation) - Get the reputation for one given hash (returns with the last 10 Filescan Sandbox reports)  
-[ip reputation](#action-ip-reputation) - Get the reputation for one given IP address (returns with the last 10 Filescan Sandbox reports)  
-[domain reputation](#action-domain-reputation) - Get the reputation for one given Domain address (returns with the last 10 Filescan Sandbox reports)  
-[url reputation](#action-url-reputation) - Get the reputation for one given URL address (returns with the last 10 Filescan Sandbox reports)  
+[search terms](#action-search-terms) - Search for scan reports on MetaDefender Sandbox using parameters specified in the 'query' field  
+[file reputation](#action-file-reputation) - Get the reputation for one given hash (returns with the last 10 MetaDefender Sandbox reports)  
+[ip reputation](#action-ip-reputation) - Get the reputation for one given IP address (returns with the last 10 MetaDefender Sandbox reports)  
+[domain reputation](#action-domain-reputation) - Get the reputation for one given Domain address (returns with the last 10 MetaDefender Sandbox reports)  
+[url reputation](#action-url-reputation) - Get the reputation for one given URL address (returns with the last 10 MetaDefender Sandbox reports)  
 
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
@@ -356,7 +356,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'search terms'
-Search for scan reports on Filescan using parameters specified in the 'query' field
+Search for scan reports on MetaDefender Sandbox using parameters specified in the 'query' field
 
 Type: **investigate**  
 Read only: **True**
@@ -416,7 +416,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'file reputation'
-Get the reputation for one given hash (returns with the last 10 Filescan Sandbox reports)
+Get the reputation for one given hash (returns with the last 10 MetaDefender Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**
@@ -449,7 +449,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'ip reputation'
-Get the reputation for one given IP address (returns with the last 10 Filescan Sandbox reports)
+Get the reputation for one given IP address (returns with the last 10 MetaDefender Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**
@@ -480,7 +480,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'domain reputation'
-Get the reputation for one given Domain address (returns with the last 10 Filescan Sandbox reports)
+Get the reputation for one given Domain address (returns with the last 10 MetaDefender Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**
@@ -511,7 +511,7 @@ summary.total_objects | numeric |  |   2
 summary.total_objects_successful | numeric |  |   2   
 
 ## action: 'url reputation'
-Get the reputation for one given URL address (returns with the last 10 Filescan Sandbox reports)
+Get the reputation for one given URL address (returns with the last 10 MetaDefender Sandbox reports)
 
 Type: **investigate**  
 Read only: **True**

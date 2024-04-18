@@ -1,4 +1,4 @@
-# File: opswatfilescan_connector.py
+# File: metadefender_sandbox_connector.py
 #
 # Copyright (c) OPSWAT, 2023
 #
@@ -26,7 +26,7 @@ from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 
 # Usage of the consts file is recommended
-from opswatfilescan_consts import *
+from metadefender_sandbox_consts import *
 
 
 class RetVal(tuple):
@@ -34,10 +34,10 @@ class RetVal(tuple):
         return tuple.__new__(RetVal, (val1, val2))
 
 
-class OpswatFilescanConnector(BaseConnector):
+class MetaDefenderSandboxConnector(BaseConnector):
     def __init__(self):
         # Call the BaseConnectors init first
-        super(OpswatFilescanConnector, self).__init__()
+        super(MetaDefenderSandboxConnector, self).__init__()
 
         self._state = None
         self._server_url = None
@@ -185,7 +185,7 @@ class OpswatFilescanConnector(BaseConnector):
         ]
 
         filters_query = "&".join(filters)
-        endpoint = OPSWAT_FILESCAN_ENDPOINT_SCAN_POLL.format(
+        endpoint = METADEFENDER_SANDBOX_ENDPOINT_SCAN_POLL.format(
             id=flow_id, filters=filters_query
         )
         poll_count = 0
@@ -256,7 +256,7 @@ class OpswatFilescanConnector(BaseConnector):
         self.save_progress("Connecting to endpoint")
 
         ret_val, response = self._make_rest_call(
-            OPSWAT_FILESCAN_ENDPOINT_USERINFO,
+            METADEFENDER_SANDBOX_ENDPOINT_USERINFO,
             action_result,
             params=None,
             headers={"X-Api-Key": self._api_key},
@@ -274,7 +274,7 @@ class OpswatFilescanConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_detonate_url(self, param):
-        """This function is used to submit a URL for analysis on OPSWAT Filescan Sandbox"""
+        """This function is used to submit a URL for analysis on MetaDefender Sandbox"""
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
@@ -290,7 +290,7 @@ class OpswatFilescanConnector(BaseConnector):
                 data["description"] = param.get("description", "")
 
             response_status, response_data = self._make_rest_call(
-                OPSWAT_FILESCAN_ENDPOINT_SCAN_URL,
+                METADEFENDER_SANDBOX_ENDPOINT_SCAN_URL,
                 action_result,
                 method="post",
                 data=data,
@@ -318,7 +318,7 @@ class OpswatFilescanConnector(BaseConnector):
             )
 
     def _handle_detonate_file(self, param):
-        """This function is used to submit a file for analysis on OPSWAT Filescan Sandbox"""
+        """This function is used to submit a file for analysis on MetaDefender Sandbox"""
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
@@ -358,7 +358,7 @@ class OpswatFilescanConnector(BaseConnector):
                 data["description"] = param.get("description", "")
 
             response_status, response_data = self._make_rest_call(
-                OPSWAT_FILESCAN_ENDPOINT_SCAN_FILE,
+                METADEFENDER_SANDBOX_ENDPOINT_SCAN_FILE,
                 action_result,
                 method="post",
                 data=data,
@@ -388,7 +388,7 @@ class OpswatFilescanConnector(BaseConnector):
             )
 
     def _handle_search_terms(self, param):
-        """This function is used to search between OPSWAT Filescan Sandbox reports"""
+        """This function is used to search between MetaDefender Sandbox reports"""
         try:
             self.save_progress(
                 "In action handler for: {0}".format(self.get_action_identifier())
@@ -421,7 +421,7 @@ class OpswatFilescanConnector(BaseConnector):
                     "page": int(page),
                 }
                 response_status, response_data = self._make_rest_call(
-                    OPSWAT_FILESCAN_ENDPOINT_SERACH,
+                    METADEFENDER_SANDBOX_ENDPOINT_SERACH,
                     action_result,
                     headers=self._headers,
                     method="get",
@@ -441,7 +441,7 @@ class OpswatFilescanConnector(BaseConnector):
                 continue_query = True
                 while continue_query:
                     response_status, response_data = self._make_rest_call(
-                        OPSWAT_FILESCAN_ENDPOINT_SERACH,
+                        METADEFENDER_SANDBOX_ENDPOINT_SERACH,
                         action_result,
                         headers=self._headers,
                         method="get",
@@ -531,7 +531,7 @@ class OpswatFilescanConnector(BaseConnector):
                 "In action handler for: {0}".format(self.get_action_identifier())
             )
             action_result = self.add_action_result(ActionResult(dict(param)))
-            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/hash"
+            endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/hash"
             request_params = {"sha256": param.get("sha256", None)}
             self.debug_print(f"Endpoint call: {endpoint}")
             return self._handle_reputation(param, endpoint, request_params)
@@ -547,7 +547,7 @@ class OpswatFilescanConnector(BaseConnector):
                 "In action handler for: {0}".format(self.get_action_identifier())
             )
             action_result = self.add_action_result(ActionResult(dict(param)))
-            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/ip"
+            endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/ip"
             request_params = {"ioc_value": param.get("ip")}
             self.debug_print(f"Endpoint call: {endpoint}")
             return self._handle_reputation(param, endpoint, request_params)
@@ -563,7 +563,7 @@ class OpswatFilescanConnector(BaseConnector):
                 "In action handler for: {0}".format(self.get_action_identifier())
             )
             action_result = self.add_action_result(ActionResult(dict(param)))
-            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/domain"
+            endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/domain"
             request_params = {"ioc_value": param.get("domain")}
             self.debug_print(f"Endpoint call: {endpoint}")
             return self._handle_reputation(param, endpoint, request_params)
@@ -579,7 +579,7 @@ class OpswatFilescanConnector(BaseConnector):
                 "In action handler for: {0}".format(self.get_action_identifier())
             )
             action_result = self.add_action_result(ActionResult(dict(param)))
-            endpoint = f"{OPSWAT_FILESCAN_ENDPOINT_REPUTATION}/url"
+            endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/url"
             request_params = {"ioc_value": param.get("url")}
             self.debug_print(f"Endpoint call: {endpoint}")
             return self._handle_reputation(param, endpoint, request_params)
@@ -637,17 +637,19 @@ class OpswatFilescanConnector(BaseConnector):
         self._timeout = int(config.get("timeout"))
 
         if (
-            self._timeout < OPSWAT_FILESCAN_TIMEOUT_MIN or self._timeout > OPSWAT_FILESCAN_TIMEOUT_MAX
+            self._timeout < METADEFENDER_SANDBOX_TIMEOUT_MIN or
+                self._timeout > METADEFENDER_SANDBOX_TIMEOUT_MAX
         ):
             self.save_progress(
-                f"ERROR: Detonate timeout must be an integer between {OPSWAT_FILESCAN_TIMEOUT_MIN} and {OPSWAT_FILESCAN_TIMEOUT_MAX}!"
+                f"ERROR: Detonate timeout must be an integer between {METADEFENDER_SANDBOX_TIMEOUT_MIN} and {METADEFENDER_SANDBOX_TIMEOUT_MAX}!"
             )
             return phantom.APP_ERROR
         if (
-            self._poll_interval < OPSWAT_FILESCAN_POLL_INTERVAL_MIN or self._poll_interval > OPSWAT_FILESCAN_POLL_INTERVAL_MAX
+            self._poll_interval < METADEFENDER_SANDBOX_POLL_INTERVAL_MIN or self._poll_interval > METADEFENDER_SANDBOX_POLL_INTERVAL_MAX
         ):
             self.save_progress(
-                f"ERROR: Poll interval must be an integer between {OPSWAT_FILESCAN_POLL_INTERVAL_MIN} and {OPSWAT_FILESCAN_POLL_INTERVAL_MAX}!"
+                "ERROR: Poll interval must be an integer between"
+                f"{METADEFENDER_SANDBOX_POLL_INTERVAL_MIN} and {METADEFENDER_SANDBOX_POLL_INTERVAL_MAX}!"
             )
             return phantom.APP_ERROR
 
@@ -682,7 +684,7 @@ def main():
 
     if username and password:
         try:
-            login_url = OpswatFilescanConnector._get_phantom_base_url() + "/login"
+            login_url = MetaDefenderSandboxConnector._get_phantom_base_url() + "/login"
 
             print("Accessing the Login page")
             r = requests.get(login_url, verify=False)
@@ -709,7 +711,7 @@ def main():
         in_json = json.loads(in_json)
         print(json.dumps(in_json, indent=4))
 
-        connector = OpswatFilescanConnector()
+        connector = MetaDefenderSandboxConnector()
         connector.print_progress_message = True
 
         if session_id is not None:
