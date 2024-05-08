@@ -18,10 +18,10 @@
             "name": "Peter Vingelmann"
         }
     ],
-    "license": "Copyright (c) OPSWAT, 2023",
-    "app_version": "1.1.0",
+    "license": "Copyright (c) OPSWAT, 2024",
+    "app_version": "1.2.0",
     "utctime_updated": "2023-05-12T18:00:17.655821Z",
-    "package_name": "phantom_opswatfilescan",
+    "package_name": "phantom_metadefendersandbox",
     "main_module": "metadefender_sandbox_connector.py",
     "min_phantom_version": "6.1.1",
     "app_wizard_version": "1.0.0",
@@ -2622,27 +2622,9 @@
         }
     ],
     "pip_dependencies": {
-        "wheel": [
-            {
-                "module": "beautifulsoup4",
-                "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
-            },
-            {
-                "module": "soupsieve",
-                "input_file": "wheels/py3/soupsieve-2.3.2.post1-py3-none-any.whl"
-            }
-        ]
+        "wheel": []
     },
     "pip39_dependencies": {
-        "wheel": [
-            {
-                "module": "beautifulsoup4",
-                "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
-            },
-            {
-                "module": "soupsieve",
-                "input_file": "wheels/py3/soupsieve-2.4.1-py3-none-any.whl"
-            }
-        ]
+        "wheel": []
     }
 }
