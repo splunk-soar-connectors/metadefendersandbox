@@ -1,2 +1,1 @@
 **Unreleased**
-* Updated app name from 'OPSWAT Filescan Sandbox' to 'MetaDefender Sandbox'

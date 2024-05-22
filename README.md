@@ -1,8 +1,8 @@
 [comment]: # "Auto-generated SOAR connector documentation"
-# MetaDefender Sandbox
+# Metadefender Sandbox
 
 Publisher: OPSWAT  
-Connector Version: 1.1.0  
+Connector Version: 1.2.0  
 Product Vendor: OPSWAT  
 Product Name: MetaDefender Sandbox  
 Product Version Supported (regex): ".\*"  
@@ -11,7 +11,7 @@ Minimum Product Version: 6.1.1
 MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
 
 [comment]: # " File: README.md"
-[comment]: # "  Copyright (c) OPSWAT, 2023"
+[comment]: # "  Copyright (c) OPSWAT, 2024"
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."
 [comment]: # "You may obtain a copy of the License at"
@@ -23,8 +23,7 @@ MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox) is a unique a
 [comment]: # ""
 # MetaDefender Sandbox App
 
-MetaDefender Sandbox is a unique adaptive threat analysis technology, enabling zero-day malware
-detection and comprehensive Indicator of Compromise (IOC) extraction.
+MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction.
 
 ## What does this App do?
 
@@ -43,15 +42,13 @@ Search for scan reports on MetaDefender Sandbox using parameters specified in th
 Get the fast reputation for one given hash (returns the last 10 MetaDefender Sandbox reports)
 
 **IP/Domain/URL reputation**  
-Get the fast reputation for one given IOC. E.g.: IP, Domain or URL (returns the last 10 MetaDefender
-Sandbox reports)
+Get the fast reputation for one given IOC. E.g.: IP, Domain or URL (returns the last 10 MetaDefender Sandbox reports)
 
 This app requires a correctly set up MetaDefender Sandbox API key to use.
 
 ## Port Information
 
-The app uses HTTPS protocol if it uses the MetaDefender Sandbox community server (default). You
-can deviate from this if you want to use your own, on-prem MetaDefender Sandbox server. Below are
+The app uses HTTPS protocol if it uses the MetaDefender Sandbox community server (default). You can deviate from this if you want to use your own, on-prem MetaDefender Sandbox server. Below are
 the default ports used by Splunk SOAR.
 
 |         Service Name | Transport Protocol | Port |
