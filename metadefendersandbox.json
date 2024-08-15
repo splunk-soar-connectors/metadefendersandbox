@@ -248,7 +248,7 @@
                     "data_path": "action_result.data.*.allSignalGroups.*.verdict.verdict",
                     "data_type": "string",
                     "example_values": [
-                        "INFORMATIONAL"
+                        "NO_THREAT"
                     ]
                 },
                 {
@@ -844,7 +844,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.total_informational",
+                    "data_path": "action_result.summary.total_no_threat",
                     "data_type": "numeric",
                     "example_values": [
                         3
@@ -889,7 +889,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
+                        "Total benign: 1, Total unknown: 0, Total no threat: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
                     ]
                 },
                 {
@@ -1086,7 +1086,7 @@
                     "data_path": "action_result.data.*.allSignalGroups.*.verdict.verdict",
                     "data_type": "string",
                     "example_values": [
-                        "INFORMATIONAL"
+                        "NO_THREAT"
                     ]
                 },
                 {
@@ -1682,7 +1682,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.total_informational",
+                    "data_path": "action_result.summary.total_no_threat",
                     "data_type": "numeric",
                     "example_values": [
                         3
@@ -1727,7 +1727,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
+                        "Total benign: 1, Total unknown: 0, Total no threat: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234"
                     ]
                 },
                 {
@@ -2006,7 +2006,7 @@
                     "data_path": "action_result.data.*.verdict",
                     "data_type": "string",
                     "example_values": [
-                        "informational"
+                        "no_threat"
                     ]
                 },
                 {
@@ -2024,7 +2024,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.total_informational",
+                    "data_path": "action_result.summary.total_no_threat",
                     "data_type": "numeric",
                     "example_values": [
                         3
@@ -2062,7 +2062,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Total benign: 0, Total unknown: 0, Total informational: 0, Total suspicious: 2, Total likely malicious: 0, Total malicious: 0, Available report count: 5"
+                        "Total benign: 0, Total unknown: 0, Total no threat: 0, Total suspicious: 2, Total likely malicious: 0, Total malicious: 0, Available report count: 5"
                     ]
                 },
                 {
@@ -2158,7 +2158,7 @@
                     "data_path": "action_result.data.*.fuzzyhash.verdict",
                     "data_type": "string",
                     "example_values": [
-                        "informational"
+                        "no_threat"
                     ]
                 },
                 {

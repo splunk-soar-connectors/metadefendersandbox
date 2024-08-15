@@ -207,7 +207,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
                     summary = {
                         "total_benign": 0,
                         "total_unknown": 0,
-                        "total_informational": 0,
+                        "total_no_threat": 0,
                         "total_suspicious": 0,
                         "total_likely_malicious": 0,
                         "total_malicious": 0,
@@ -223,6 +223,8 @@ class MetaDefenderSandboxConnector(BaseConnector):
                             .get("verdict", "unknown")
                             .lower()
                         )
+                        if verdict == "informational":
+                            verdict = "no_threat"
                         summary[f"total_{verdict}"] += 1
 
                     rejected = response_data.get("rejected_files", None)
@@ -464,7 +466,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             summary = {
                 "total_benign": 0,
                 "total_unknown": 0,
-                "total_informational": 0,
+                "total_no_threat": 0,
                 "total_suspicious": 0,
                 "total_likely_malicious": 0,
                 "total_malicious": 0,
@@ -474,6 +476,9 @@ class MetaDefenderSandboxConnector(BaseConnector):
                 for item in items:
                     action_result.add_data(item)
                     verdict = item.get("verdict", "unknown").lower()
+                    if verdict == "informational":
+                        verdict = "no_threat"
+
                     summary[f"total_{verdict}"] += 1
                 summary_data.update(summary)
                 self.save_progress(f"{len(items)} results were found!")
