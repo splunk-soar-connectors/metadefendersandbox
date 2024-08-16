@@ -6,7 +6,7 @@ Connector Version: 1.2.0
 Product Vendor: OPSWAT  
 Product Name: MetaDefender Sandbox  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.1.1  
+Minimum Product Version: 6.2.1  
 
 MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
 

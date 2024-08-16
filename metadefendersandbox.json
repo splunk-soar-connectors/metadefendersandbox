@@ -23,7 +23,7 @@
     "utctime_updated": "2023-05-12T18:00:17.655821Z",
     "package_name": "phantom_metadefendersandbox",
     "main_module": "metadefender_sandbox_connector.py",
-    "min_phantom_version": "6.1.1",
+    "min_phantom_version": "6.2.1",
     "app_wizard_version": "1.0.0",
     "fips_compliant": true,
     "latest_tested_versions": [
