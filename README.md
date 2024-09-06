@@ -2,7 +2,7 @@
 # Metadefender Sandbox
 
 Publisher: OPSWAT  
-Connector Version: 1.2.0  
+Connector Version: 1.2.1 
 Product Vendor: OPSWAT  
 Product Name: MetaDefender Sandbox  
 Product Version Supported (regex): ".\*"  

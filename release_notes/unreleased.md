@@ -1,3 +1,3 @@
 **Unreleased**
 
-- Handle "NO_THREAT" verdict: From MetaDefender version 2.0.0, the verdict 'NO_THREAT' is displayed instead of 'INFORMATIONAL'.
+- Changed the verdict from 'INFORMATIONAL' to 'NO_THREAT' [PAPP-34526].
