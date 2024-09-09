@@ -2,7 +2,7 @@
 # Metadefender Sandbox
 
 Publisher: OPSWAT  
-Connector Version: 1.2.1 
+Connector Version: 1.2.1  
 Product Vendor: OPSWAT  
 Product Name: MetaDefender Sandbox  
 Product Version Supported (regex): ".\*"  
@@ -210,7 +210,7 @@ action_result.data.\*.taskReference.state | string |  |   SUCCESS
 action_result.summary.flow_id | string |  |   0123456789abcdefghijklmn 
 action_result.summary.rejected_reasons.\* | string |  |   ARCHIVE_ENCRYPTED 
 action_result.summary.total_benign | numeric |  |   3 
-action_result.summary.total_no_threat| numeric |  |   3 
+action_result.summary.total_no_threat | numeric |  |   3 
 action_result.summary.total_likely_malicious | numeric |  |   3 
 action_result.summary.total_malicious | numeric |  |   3 
 action_result.summary.total_rejected | numeric |  |   1 
@@ -400,7 +400,7 @@ action_result.data.\*.tags.\*.tag.verdict.confidence | numeric |  |   1
 action_result.data.\*.tags.\*.tag.verdict.threatLevel | numeric |  |   0.75 
 action_result.data.\*.tags.\*.tag.verdict.verdict | string |  |   BENIGN 
 action_result.data.\*.updated_date | string |  |   02/14/2023, 02:34:51 
-action_result.data.\*.verdict | string |  |   suspicious 
+action_result.data.\*.verdict | string |  |   no_threat 
 action_result.summary.available_report_count | numeric |  |   3 
 action_result.summary.total_benign | numeric |  |   3 
 action_result.summary.total_no_threat | numeric |  |   3 
@@ -434,7 +434,7 @@ action_result.data.\*.filescan_reports.\*.report_date | string |  |   2023-05-25
 action_result.data.\*.filescan_reports.\*.report_id | string |  |   00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa 
 action_result.data.\*.filescan_reports.\*.verdict | string |  |   malicious 
 action_result.data.\*.fuzzyhash.hash | string |  |   0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr 
-action_result.data.\*.fuzzyhash.verdict | string |  |   suspicious 
+action_result.data.\*.fuzzyhash.verdict | string |  |   no_threat 
 action_result.data.\*.mdcloud.detected_av_engines | numeric |  |   30 
 action_result.data.\*.mdcloud.scan_time | string |  |   2023-05-25T01:15:45.789000 
 action_result.data.\*.mdcloud.total_av_engines | numeric |  |   30 
