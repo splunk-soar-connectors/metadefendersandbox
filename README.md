@@ -2,11 +2,11 @@
 # Metadefender Sandbox
 
 Publisher: OPSWAT  
-Connector Version: 1.2.0  
+Connector Version: 1.2.1 
 Product Vendor: OPSWAT  
 Product Name: MetaDefender Sandbox  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.1.1  
+Minimum Product Version: 6.2.1  
 
 MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
 
@@ -125,7 +125,7 @@ action_result.data.\*.allSignalGroups.\*.signals.\*.signalReadable | string |  |
 action_result.data.\*.allSignalGroups.\*.signals.\*.strength | numeric |  |   0.25 
 action_result.data.\*.allSignalGroups.\*.verdict.confidence | numeric |  |   1 
 action_result.data.\*.allSignalGroups.\*.verdict.threatLevel | numeric |  |   0.2 
-action_result.data.\*.allSignalGroups.\*.verdict.verdict | string |  |   INFORMATIONAL 
+action_result.data.\*.allSignalGroups.\*.verdict.verdict | string |  |   NO_THREAT 
 action_result.data.\*.allTags.\*.isRootTag | boolean |  |   True  False 
 action_result.data.\*.allTags.\*.source | string |  |   MEDIA_TYPE 
 action_result.data.\*.allTags.\*.sourceIdentifier | string |  |   0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr 
@@ -210,13 +210,13 @@ action_result.data.\*.taskReference.state | string |  |   SUCCESS
 action_result.summary.flow_id | string |  |   0123456789abcdefghijklmn 
 action_result.summary.rejected_reasons.\* | string |  |   ARCHIVE_ENCRYPTED 
 action_result.summary.total_benign | numeric |  |   3 
-action_result.summary.total_informational | numeric |  |   3 
+action_result.summary.total_no_threat| numeric |  |   3 
 action_result.summary.total_likely_malicious | numeric |  |   3 
 action_result.summary.total_malicious | numeric |  |   3 
 action_result.summary.total_rejected | numeric |  |   1 
 action_result.summary.total_suspicious | numeric |  |   3 
 action_result.summary.total_unknown | numeric |  |   3 
-action_result.message | string |  |   Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234 
+action_result.message | string |  |   Total benign: 1, Total unknown: 0, Total no threat: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234 
 summary.total_objects | numeric |  |   2 
 summary.total_objects_successful | numeric |  |   2   
 
@@ -257,7 +257,7 @@ action_result.data.\*.allSignalGroups.\*.signals.\*.signalReadable | string |  |
 action_result.data.\*.allSignalGroups.\*.signals.\*.strength | numeric |  |   0.25 
 action_result.data.\*.allSignalGroups.\*.verdict.confidence | numeric |  |   1 
 action_result.data.\*.allSignalGroups.\*.verdict.threatLevel | numeric |  |   0.2 
-action_result.data.\*.allSignalGroups.\*.verdict.verdict | string |  |   INFORMATIONAL 
+action_result.data.\*.allSignalGroups.\*.verdict.verdict | string |  |   NO_THREAT 
 action_result.data.\*.allTags.\*.isRootTag | boolean |  |   True  False 
 action_result.data.\*.allTags.\*.source | string |  |   MEDIA_TYPE 
 action_result.data.\*.allTags.\*.sourceIdentifier | string |  |   0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr 
@@ -342,13 +342,13 @@ action_result.data.\*.taskReference.state | string |  |   SUCCESS
 action_result.summary.flow_id | string |  |   0123456789abcdefghijklmn 
 action_result.summary.rejected_reasons.\* | string |  |   ARCHIVE_ENCRYPTED 
 action_result.summary.total_benign | numeric |  |   3 
-action_result.summary.total_informational | numeric |  |   3 
+action_result.summary.total_no_threat | numeric |  |   3 
 action_result.summary.total_likely_malicious | numeric |  |   3 
 action_result.summary.total_malicious | numeric |  |   3 
 action_result.summary.total_rejected | numeric |  |   1 
 action_result.summary.total_suspicious | numeric |  |   3 
 action_result.summary.total_unknown | numeric |  |   3 
-action_result.message | string |  |   Total benign: 1, Total unknown: 0, Total informational: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234 
+action_result.message | string |  |   Total benign: 1, Total unknown: 0, Total no threat: 0, Total suspicious: 0, Total likely malicious: 0, Total malicious: 0, Total rejected: 0, Rejected reasons: [], Flow id: 1234 
 summary.total_objects | numeric |  |   2 
 summary.total_objects_successful | numeric |  |   2   
 
@@ -400,15 +400,15 @@ action_result.data.\*.tags.\*.tag.verdict.confidence | numeric |  |   1
 action_result.data.\*.tags.\*.tag.verdict.threatLevel | numeric |  |   0.75 
 action_result.data.\*.tags.\*.tag.verdict.verdict | string |  |   BENIGN 
 action_result.data.\*.updated_date | string |  |   02/14/2023, 02:34:51 
-action_result.data.\*.verdict | string |  |   informational 
+action_result.data.\*.verdict | string |  |   suspicious 
 action_result.summary.available_report_count | numeric |  |   3 
 action_result.summary.total_benign | numeric |  |   3 
-action_result.summary.total_informational | numeric |  |   3 
+action_result.summary.total_no_threat | numeric |  |   3 
 action_result.summary.total_likely_malicious | numeric |  |   3 
 action_result.summary.total_malicious | numeric |  |   3 
 action_result.summary.total_suspicious | numeric |  |   3 
 action_result.summary.total_unknown | numeric |  |   3 
-action_result.message | string |  |   Total benign: 0, Total unknown: 0, Total informational: 0, Total suspicious: 2, Total likely malicious: 0, Total malicious: 0, Available report count: 5 
+action_result.message | string |  |   Total benign: 0, Total unknown: 0, Total no threat: 0, Total suspicious: 2, Total likely malicious: 0, Total malicious: 0, Available report count: 5 
 summary.total_objects | numeric |  |   2 
 summary.total_objects_successful | numeric |  |   2   
 
@@ -434,7 +434,7 @@ action_result.data.\*.filescan_reports.\*.report_date | string |  |   2023-05-25
 action_result.data.\*.filescan_reports.\*.report_id | string |  |   00000000-aaaa-aaaa-aaaa-aaaaaaaaaaaa 
 action_result.data.\*.filescan_reports.\*.verdict | string |  |   malicious 
 action_result.data.\*.fuzzyhash.hash | string |  |   0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqr 
-action_result.data.\*.fuzzyhash.verdict | string |  |   informational 
+action_result.data.\*.fuzzyhash.verdict | string |  |   suspicious 
 action_result.data.\*.mdcloud.detected_av_engines | numeric |  |   30 
 action_result.data.\*.mdcloud.scan_time | string |  |   2023-05-25T01:15:45.789000 
 action_result.data.\*.mdcloud.total_av_engines | numeric |  |   30 
