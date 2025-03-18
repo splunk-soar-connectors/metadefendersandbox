@@ -1,6 +1,6 @@
 # File: metadefender_sandbox_connector.py
 #
-# Copyright (c) OPSWAT, 2024
+# Copyright (c) OPSWAT, 2024-2025
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ class RetVal(tuple):
 class MetaDefenderSandboxConnector(BaseConnector):
     def __init__(self):
         # Call the BaseConnectors init first
-        super(MetaDefenderSandboxConnector, self).__init__()
+        super().__init__()
 
         self._state = None
         self._server_url = None
@@ -51,9 +51,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return RetVal(phantom.APP_SUCCESS, {})
 
         return RetVal(
-            action_result.set_status(
-                phantom.APP_ERROR, "Empty response and no information in the header"
-            ),
+            action_result.set_status(phantom.APP_ERROR, "Empty response and no information in the header"),
             None,
         )
 
@@ -70,9 +68,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
         except:
             error_text = "Cannot parse error details"
 
-        message = "Status Code: {0}. Data from server:\n{1}\n".format(
-            status_code, error_text
-        )
+        message = f"Status Code: {status_code}. Data from server:\n{error_text}\n"
 
         message = message.replace("{", "{{").replace("}", "}}")
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
@@ -85,7 +81,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return RetVal(
                 action_result.set_status(
                     phantom.APP_ERROR,
-                    "Unable to parse JSON response. Error: {0}".format(str(e)),
+                    f"Unable to parse JSON response. Error: {e!s}",
                 ),
                 None,
             )
@@ -95,9 +91,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return RetVal(phantom.APP_SUCCESS, resp_json)
 
         # You should process the error returned in the json
-        message = "Error from server. Status Code: {0} Data from server: {1}".format(
-            r.status_code, r.text.replace("{", "{{").replace("}", "}}")
-        )
+        message = "Error from server. Status Code: {} Data from server: {}".format(r.status_code, r.text.replace("{", "{{").replace("}", "}}"))
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
@@ -126,7 +120,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return self._process_empty_response(r, action_result)
 
         # everything else is actually an error at this point
-        message = "Can't process response from server. Status Code: {0} Data from server: {1}".format(
+        message = "Can't process response from server. Status Code: {} Data from server: {}".format(
             r.status_code, r.text.replace("{", "{{").replace("}", "}}")
         )
 
@@ -142,9 +136,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             request_func = getattr(requests, method)
         except AttributeError:
             return RetVal(
-                action_result.set_status(
-                    phantom.APP_ERROR, "Invalid method: {0}".format(method)
-                ),
+                action_result.set_status(phantom.APP_ERROR, f"Invalid method: {method}"),
                 resp_json,
             )
 
@@ -164,7 +156,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return RetVal(
                 action_result.set_status(
                     phantom.APP_ERROR,
-                    "Error Connecting to server. Details: {0}".format(str(e)),
+                    f"Error Connecting to server. Details: {e!s}",
                 ),
                 resp_json,
             )
@@ -185,19 +177,15 @@ class MetaDefenderSandboxConnector(BaseConnector):
         ]
 
         filters_query = "&".join(filters)
-        endpoint = METADEFENDER_SANDBOX_ENDPOINT_SCAN_POLL.format(
-            id=flow_id, filters=filters_query
-        )
+        endpoint = METADEFENDER_SANDBOX_ENDPOINT_SCAN_POLL.format(id=flow_id, filters=filters_query)
         poll_count = 0
         response_status = None
         response_data = None
         try:
             while elapsed_time <= self._timeout:
-                response_status, response_data = self._make_rest_call(
-                    endpoint, action_result, headers=self._headers, method="get"
-                )
+                response_status, response_data = self._make_rest_call(endpoint, action_result, headers=self._headers, method="get")
                 poll_count += 1
-                self.save_progress("Polling attempt {0}".format(poll_count))
+                self.save_progress(f"Polling attempt {poll_count}")
 
                 if phantom.is_fail(response_status):
                     return response_status
@@ -218,11 +206,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
 
                     for report_id, report in response_data.get("reports", {}).items():
                         action_result.add_data(report)
-                        verdict = (
-                            report.get("finalVerdict", {})
-                            .get("verdict", "unknown")
-                            .lower()
-                        )
+                        verdict = report.get("finalVerdict", {}).get("verdict", "unknown").lower()
                         if verdict == "informational":
                             verdict = "no_threat"
                         summary[f"total_{verdict}"] += 1
@@ -230,9 +214,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
                     rejected = response_data.get("rejected_files", None)
                     if rejected:
                         summary["total_rejected"] = len(rejected)
-                        summary["rejected_reasons"] = [
-                            x.get("rejected_reason") for x in rejected
-                        ]
+                        summary["rejected_reasons"] = [x.get("rejected_reason") for x in rejected]
 
                     summary_data.update(summary)
                     return action_result.set_status(phantom.APP_SUCCESS)
@@ -245,9 +227,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
 
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
-            return action_result.set_status(
-                phantom.APP_ERROR, self._get_error_message_from_exception(e)
-            )
+            return action_result.set_status(phantom.APP_ERROR, self._get_error_message_from_exception(e))
 
     def _handle_test_connectivity(self, param):
         """This function is used to handle the test connectivity action"""
@@ -270,17 +250,13 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return action_result.set_status(phantom.APP_ERROR)
 
         # Return success
-        self.save_progress(
-            f"Test Connectivity Passed. \n{response['username']} API key has been set successfully."
-        )
+        self.save_progress(f"Test Connectivity Passed. \n{response['username']} API key has been set successfully.")
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_detonate_url(self, param):
         """This function is used to submit a URL for analysis on MetaDefender Sandbox"""
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+            self.save_progress(f"In action handler for: {self.get_action_identifier()}")
             action_result = self.add_action_result(ActionResult(dict(param)))
             data = {"url": param["url"]}
 
@@ -301,53 +277,37 @@ class MetaDefenderSandboxConnector(BaseConnector):
 
             if not response_status:
                 self.save_progress(f"ERROR: {response_data} | URL: {data}")
-                return action_result.set_status(
-                    phantom.APP_ERROR, f"ERROR: {response_data}"
-                )
+                return action_result.set_status(phantom.APP_ERROR, f"ERROR: {response_data}")
 
             flow_id = response_data.get("flow_id", None)
             if not flow_id:
-                return action_result.set_status(
-                    phantom.APP_ERROR, "ERROR: The flow_id to be polled is missing"
-                )
+                return action_result.set_status(phantom.APP_ERROR, "ERROR: The flow_id to be polled is missing")
 
             self.save_progress(f"Request flow_id: {flow_id}")
             return self._poll_result(action_result, flow_id)
         except Exception as e:
             self.save_progress(f"ERROR: Detonate URL failure: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: URL detonation failure: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: URL detonation failure: {e!r}")
 
     def _handle_detonate_file(self, param):
         """This function is used to submit a file for analysis on MetaDefender Sandbox"""
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+            self.save_progress(f"In action handler for: {self.get_action_identifier()}")
             action_result = self.add_action_result(ActionResult(dict(param)))
 
             vault_id = param.get("vault_id")
             if not vault_id:
                 self.save_progress("The vault_id is missing")
-                return action_result.set_status(
-                    phantom.APP_ERROR, "The vault_id is missing"
-                )
+                return action_result.set_status(phantom.APP_ERROR, "The vault_id is missing")
 
-            _, _, file_info = ph_rules.vault_info(
-                container_id=self.get_container_id(), vault_id=vault_id
-            )
+            _, _, file_info = ph_rules.vault_info(container_id=self.get_container_id(), vault_id=vault_id)
             if not file_info:
                 self.save_progress("ERROR: Could not retrieve vault file")
-                return action_result.set_status(
-                    phantom.APP_ERROR, "ERROR: Could not retrieve vault file"
-                )
-            file_info = list(file_info)[0]
+                return action_result.set_status(phantom.APP_ERROR, "ERROR: Could not retrieve vault file")
+            file_info = next(iter(file_info))
             file_path = file_info["path"]
             file_name = file_info["name"]
-            files = [
-                ("file", (file_name, open(file_path, "rb"), "application/octet-stream"))
-            ]
+            files = [("file", (file_name, open(file_path, "rb"), "application/octet-stream"))]
 
             self.debug_print(f"Detonate file: {file_name}")
 
@@ -370,31 +330,23 @@ class MetaDefenderSandboxConnector(BaseConnector):
 
             if not response_status:
                 self.save_progress(f"ERROR: {response_data}")
-                return action_result.set_status(
-                    phantom.APP_ERROR, f"ERROR: {response_data}"
-                )
+                return action_result.set_status(phantom.APP_ERROR, f"ERROR: {response_data}")
 
             flow_id = response_data.get("flow_id", None)
             if not flow_id:
                 self.save_progress("ERROR: The flow_id to be polled is missing")
-                return action_result.set_status(
-                    phantom.APP_ERROR, "ERROR: The flow_id to be polled is missing"
-                )
+                return action_result.set_status(phantom.APP_ERROR, "ERROR: The flow_id to be polled is missing")
 
             self.save_progress(f"Request flow_id: {flow_id}")
             return self._poll_result(action_result, flow_id)
         except Exception as e:
             self.save_progress(f"Detonate file failure: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: File detonation failure: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: File detonation failure: {e!r}")
 
     def _handle_search_terms(self, param):
         """This function is used to search between MetaDefender Sandbox reports"""
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+            self.save_progress(f"In action handler for: {self.get_action_identifier()}")
             action_result = self.add_action_result(ActionResult(dict(param)))
             summary_data = action_result.update_summary({})
 
@@ -404,13 +356,13 @@ class MetaDefenderSandboxConnector(BaseConnector):
             page = param.get("page", None)
             limit = param.get("limit") or 10
             total_available_items = 0
-            if (page_size and int(page_size) not in [5, 10, 20]) or \
-                (page and int(page) <= 0) or \
-                    (limit and (int(limit) <= 0 or int(limit) > 50)):
+            if (
+                (page_size and int(page_size) not in [5, 10, 20])
+                or (page and int(page) <= 0)
+                or (limit and (int(limit) <= 0 or int(limit) > 50))
+            ):
                 self.save_progress("ERROR: Invalid parameter")
-                return action_result.set_status(
-                    phantom.APP_ERROR, "ERROR: Invalid parameter"
-                )
+                return action_result.set_status(phantom.APP_ERROR, "ERROR: Invalid parameter")
 
             if page_size and not page:
                 page = 1
@@ -431,9 +383,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
                 )
                 if not response_status:
                     self.save_progress(f"ERROR: {response_data}")
-                    return action_result.set_status(
-                        phantom.APP_ERROR, f"ERROR: {response_data}"
-                    )
+                    return action_result.set_status(phantom.APP_ERROR, f"ERROR: {response_data}")
                 items = response_data.get("items", [])
                 total_available_items = response_data.get("count", len(items))
             else:
@@ -451,9 +401,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
                     )
                     if not response_status:
                         self.save_progress(f"ERROR: {response_data}")
-                        return action_result.set_status(
-                            phantom.APP_ERROR, f"ERROR: {response_data}"
-                        )
+                        return action_result.set_status(phantom.APP_ERROR, f"ERROR: {response_data}")
                     actual_items = response_data.get("items", [])
                     total_available_items = response_data.get("count", len(items))
                     items += actual_items
@@ -487,9 +435,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
             self.save_progress(f"Search terms query failure: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: Search terms query failure: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: Search terms query failure: {e!r}")
 
     def _handle_reputation(self, param, endpoint, request_params):
         """This function is used to get fast reputation about sha256, ip, domain or url"""
@@ -506,17 +452,11 @@ class MetaDefenderSandboxConnector(BaseConnector):
             )
             if not response_status:
                 self.save_progress(f"ERROR: {response_data}")
-                return action_result.set_status(
-                    phantom.APP_ERROR, f"ERROR: {response_data}"
-                )
+                return action_result.set_status(phantom.APP_ERROR, f"ERROR: {response_data}")
 
-            self.save_progress(
-                f"Reputation is {response_data.get('overall_verdict', 'unknown')}"
-            )
+            self.save_progress(f"Reputation is {response_data.get('overall_verdict', 'unknown')}")
             if response_data.get("filescan_reports"):
-                response_data["filescan_reports"] = response_data["filescan_reports"][
-                    :10
-                ]
+                response_data["filescan_reports"] = response_data["filescan_reports"][:10]
             action_result.add_data(response_data)
             summary_data.update(
                 {
@@ -526,15 +466,11 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return action_result.set_status(phantom.APP_SUCCESS)
         except Exception as e:
             self.save_progress(f"Search terms query failure: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: Search terms query failure: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: Search terms query failure: {e!r}")
 
     def _handle_file_reputation(self, param):
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+            self.save_progress(f"In action handler for: {self.get_action_identifier()}")
             action_result = self.add_action_result(ActionResult(dict(param)))
             endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/hash"
             request_params = {"sha256": param.get("sha256", None)}
@@ -542,15 +478,11 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return self._handle_reputation(param, endpoint, request_params)
         except Exception as e:
             self.save_progress(f"File reputation error: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: File reputation error: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: File reputation error: {e!r}")
 
     def _handle_ip_reputation(self, param):
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+            self.save_progress(f"In action handler for: {self.get_action_identifier()}")
             action_result = self.add_action_result(ActionResult(dict(param)))
             endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/ip"
             request_params = {"ioc_value": param.get("ip")}
@@ -558,15 +490,11 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return self._handle_reputation(param, endpoint, request_params)
         except Exception as e:
             self.save_progress(f"IP reputation error: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: IP reputation error: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: IP reputation error: {e!r}")
 
     def _handle_domain_reputation(self, param):
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+            self.save_progress(f"In action handler for: {self.get_action_identifier()}")
             action_result = self.add_action_result(ActionResult(dict(param)))
             endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/domain"
             request_params = {"ioc_value": param.get("domain")}
@@ -574,15 +502,11 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return self._handle_reputation(param, endpoint, request_params)
         except Exception as e:
             self.save_progress(f"Domain reputation error: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: Domain reputation error: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: Domain reputation error: {e!r}")
 
     def _handle_url_reputation(self, param):
         try:
-            self.save_progress(
-                "In action handler for: {0}".format(self.get_action_identifier())
-            )
+            self.save_progress(f"In action handler for: {self.get_action_identifier()}")
             action_result = self.add_action_result(ActionResult(dict(param)))
             endpoint = f"{METADEFENDER_SANDBOX_ENDPOINT_REPUTATION}/url"
             request_params = {"ioc_value": param.get("url")}
@@ -590,9 +514,7 @@ class MetaDefenderSandboxConnector(BaseConnector):
             return self._handle_reputation(param, endpoint, request_params)
         except Exception as e:
             self.save_progress(f"URL reputation error: {e!r}")
-            return action_result.set_status(
-                phantom.APP_ERROR, f"ERROR: URL reputation error: {e!r}"
-            )
+            return action_result.set_status(phantom.APP_ERROR, f"ERROR: URL reputation error: {e!r}")
 
     def handle_action(self, param):
         action_list = {
@@ -641,16 +563,12 @@ class MetaDefenderSandboxConnector(BaseConnector):
         self._poll_interval = int(config.get("poll_interval"))
         self._timeout = int(config.get("timeout"))
 
-        if (
-            self._timeout < METADEFENDER_SANDBOX_TIMEOUT_MIN or self._timeout > METADEFENDER_SANDBOX_TIMEOUT_MAX
-        ):
+        if self._timeout < METADEFENDER_SANDBOX_TIMEOUT_MIN or self._timeout > METADEFENDER_SANDBOX_TIMEOUT_MAX:
             self.save_progress(
                 f"ERROR: Detonate timeout must be an integer between {METADEFENDER_SANDBOX_TIMEOUT_MIN} and {METADEFENDER_SANDBOX_TIMEOUT_MAX}!"
             )
             return phantom.APP_ERROR
-        if (
-            self._poll_interval < METADEFENDER_SANDBOX_POLL_INTERVAL_MIN or self._poll_interval > METADEFENDER_SANDBOX_POLL_INTERVAL_MAX
-        ):
+        if self._poll_interval < METADEFENDER_SANDBOX_POLL_INTERVAL_MIN or self._poll_interval > METADEFENDER_SANDBOX_POLL_INTERVAL_MAX:
             self.save_progress(
                 "ERROR: Poll interval must be an integer between"
                 f"{METADEFENDER_SANDBOX_POLL_INTERVAL_MIN} and {METADEFENDER_SANDBOX_POLL_INTERVAL_MAX}!"
@@ -684,7 +602,6 @@ def main():
     verify = args.verify
 
     if username is not None and password is None:
-
         # User specified a username but not a password, so ask
         import getpass
 
