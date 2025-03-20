@@ -1,6 +1,6 @@
 # File: opswatfilescan_consts.py
 #
-# Copyright (c) OPSWAT, 2024
+# Copyright (c) OPSWAT, 2024-2025
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 #
 
 # Endpoints
-METADEFENDER_SANDBOX_ENDPOINT_USERINFO = '/api/users/me'
-METADEFENDER_SANDBOX_ENDPOINT_SCAN_FILE = '/api/scan/file'
-METADEFENDER_SANDBOX_ENDPOINT_SCAN_URL = '/api/scan/url'
-METADEFENDER_SANDBOX_ENDPOINT_SCAN_POLL = '/api/scan/{id}/report?{filters}'
-METADEFENDER_SANDBOX_ENDPOINT_SERACH = '/api/reports/search'
-METADEFENDER_SANDBOX_ENDPOINT_REPUTATION = '/api/reputation'
+METADEFENDER_SANDBOX_ENDPOINT_USERINFO = "/api/users/me"
+METADEFENDER_SANDBOX_ENDPOINT_SCAN_FILE = "/api/scan/file"
+METADEFENDER_SANDBOX_ENDPOINT_SCAN_URL = "/api/scan/url"
+METADEFENDER_SANDBOX_ENDPOINT_SCAN_POLL = "/api/scan/{id}/report?{filters}"
+METADEFENDER_SANDBOX_ENDPOINT_SERACH = "/api/reports/search"
+METADEFENDER_SANDBOX_ENDPOINT_REPUTATION = "/api/reputation"
 
 METADEFENDER_SANDBOX_POLL_INTERVAL_MIN = 1
 METADEFENDER_SANDBOX_TIMEOUT_MIN = 30
