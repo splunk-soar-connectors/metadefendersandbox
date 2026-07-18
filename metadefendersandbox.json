@@ -62,6 +62,14 @@
             "order": 3,
             "name": "Timeout",
             "id": 3
+        },
+        "verify_server_cert": {
+            "description": "Verify the server TLS certificate",
+            "data_type": "boolean",
+            "default": true,
+            "order": 4,
+            "name": "Verify Server Certificate",
+            "id": 4
         }
     },
     "actions": [
