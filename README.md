@@ -1,9 +1,9 @@
 # Metadefender Sandbox
 
-Publisher: OPSWAT \
-Connector Version: 1.2.1 \
-Product Vendor: OPSWAT \
-Product Name: MetaDefender Sandbox \
+Publisher: OPSWAT <br>
+Connector Version: 1.2.1 <br>
+Product Vendor: OPSWAT <br>
+Product Name: MetaDefender Sandbox <br>
 Minimum Product Version: 6.2.1
 
 MetaDefender Sandbox (previously known as OPSWAT Filescan Sandbox) is a unique adaptive threat analysis technology, enabling zero-day malware detection and comprehensive Indicator of Compromise (IOC) extraction
@@ -52,23 +52,24 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 **api_key** | required | password | The MetaDefender Sandbox API Key to use for connection |
 **poll_interval** | optional | numeric | Number of seconds to poll for a detonation result (Default: 5, Range: [1:30]) |
 **timeout** | optional | numeric | Request Timeout (Default: 60 seconds, Range: [30:300]) |
+**verify_server_cert** | optional | boolean | Verify the server TLS certificate |
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[detonate url](#action-detonate-url) - Retrieve detonation analysis results for URL \
-[detonate file](#action-detonate-file) - Retrieve detonation analysis results for file \
-[search terms](#action-search-terms) - Search for scan reports on MetaDefender Sandbox using parameters specified in the 'query' field \
-[file reputation](#action-file-reputation) - Get the reputation for one given hash (returns with the last 10 MetaDefender Sandbox reports) \
-[ip reputation](#action-ip-reputation) - Get the reputation for one given IP address (returns with the last 10 MetaDefender Sandbox reports) \
-[domain reputation](#action-domain-reputation) - Get the reputation for one given Domain address (returns with the last 10 MetaDefender Sandbox reports) \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[detonate url](#action-detonate-url) - Retrieve detonation analysis results for URL <br>
+[detonate file](#action-detonate-file) - Retrieve detonation analysis results for file <br>
+[search terms](#action-search-terms) - Search for scan reports on MetaDefender Sandbox using parameters specified in the 'query' field <br>
+[file reputation](#action-file-reputation) - Get the reputation for one given hash (returns with the last 10 MetaDefender Sandbox reports) <br>
+[ip reputation](#action-ip-reputation) - Get the reputation for one given IP address (returns with the last 10 MetaDefender Sandbox reports) <br>
+[domain reputation](#action-domain-reputation) - Get the reputation for one given Domain address (returns with the last 10 MetaDefender Sandbox reports) <br>
 [url reputation](#action-url-reputation) - Get the reputation for one given URL address (returns with the last 10 MetaDefender Sandbox reports)
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -83,7 +84,7 @@ No Output
 
 Retrieve detonation analysis results for URL
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 Detonate url will send an URL to MetaDefender Sandbox for analysis.
@@ -218,7 +219,7 @@ summary.total_objects_successful | numeric | | 2 |
 
 Retrieve detonation analysis results for file
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 Detonate url will send a file from Vault to MetaDefender Sandbox for analysis.
@@ -353,7 +354,7 @@ summary.total_objects_successful | numeric | | 2 |
 
 Search for scan reports on MetaDefender Sandbox using parameters specified in the 'query' field
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -416,7 +417,7 @@ summary.total_objects_successful | numeric | | 2 |
 
 Get the reputation for one given hash (returns with the last 10 MetaDefender Sandbox reports)
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -452,7 +453,7 @@ summary.total_objects_successful | numeric | | 2 |
 
 Get the reputation for one given IP address (returns with the last 10 MetaDefender Sandbox reports)
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -486,7 +487,7 @@ summary.total_objects_successful | numeric | | 2 |
 
 Get the reputation for one given Domain address (returns with the last 10 MetaDefender Sandbox reports)
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -520,7 +521,7 @@ summary.total_objects_successful | numeric | | 2 |
 
 Get the reputation for one given URL address (returns with the last 10 MetaDefender Sandbox reports)
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -554,7 +555,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
