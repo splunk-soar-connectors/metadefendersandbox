@@ -19,8 +19,8 @@
         }
     ],
     "license": "Copyright (c) OPSWAT, 2024-2026",
-    "app_version": "1.2.1",
-    "utctime_updated": "2023-05-12T18:00:17.655821Z",
+    "app_version": "1.2.2",
+    "utctime_updated": "2026-07-20T18:13:13.879075Z",
     "package_name": "phantom_metadefendersandbox",
     "main_module": "metadefender_sandbox_connector.py",
     "min_phantom_version": "6.2.1",

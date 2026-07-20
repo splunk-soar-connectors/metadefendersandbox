@@ -1,7 +1,7 @@
 # Metadefender Sandbox
 
 Publisher: OPSWAT <br>
-Connector Version: 1.2.1 <br>
+Connector Version: 1.2.2 <br>
 Product Vendor: OPSWAT <br>
 Product Name: MetaDefender Sandbox <br>
 Minimum Product Version: 6.2.1
